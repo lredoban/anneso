@@ -23,9 +23,9 @@
 </script>
 
 <style lang="sass">
-  @import "~assets/css/variables"
+  @import "~assets/css/helpers"
 
-  @media screen and (min-width: 641px)
+  @media #{$medium-up}
     #about
       background: url('~assets/bg-about.png')
       background-repeat: no-repeat

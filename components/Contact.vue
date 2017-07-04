@@ -30,7 +30,7 @@
     color: $blue
     opacity: .6
 
-  @media screen and (min-width: 641px)
+  @media #{medium-up}
     #contact
       background: url('~assets/bg-contact.png')
       background-repeat: no-repeat

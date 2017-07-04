@@ -7,5 +7,5 @@
 </template>
 
 <style lang="sass">
-  @import "~assets/css/variables"
+  @import "~assets/css/helpers"
 </style>

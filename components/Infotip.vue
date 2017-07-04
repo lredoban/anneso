@@ -14,7 +14,7 @@
 </script>
 
 <style lang="sass" scoped>
-  @import "~assets/css/variables"
+  @import "~assets/css/helpers"
 
   div
     position: absolute

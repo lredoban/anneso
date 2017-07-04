@@ -23,7 +23,7 @@
 </script>
 
 <style lang="sass">
-@import "~assets/css/variables"
+@import "~assets/css/helpers"
 #welcome img
   width: 90%
   max-width: 640px
