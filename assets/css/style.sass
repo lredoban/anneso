@@ -1,0 +1,64 @@
+@import "variables"
+@import "fonts"
+
+html
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
+  font-size: 16px
+  word-spacing: 1px
+  -ms-text-size-adjust: 100%
+  -webkit-text-size-adjust: 100%
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased
+  box-sizing: border-box
+*, *:before, *:after
+  box-sizing: border-box
+  margin: 0
+body
+  text-align: center
+  font-family: 'Viga', sans-serif
+  color: $primary
+  overflow: hidden
+section
+  max-width: 100%
+  height: 100vh
+  position: relative
+  overflow: hidden
+  .container
+    height: 100%
+  &.fancy
+    background: linear-gradient(45deg, $light-blue, $blue)
+p
+  padding: 2em
+  line-height: 1.5em
+  max-width: 640px
+
+strong
+  font-weight: 400
+  background-color: $secondary
+  padding: 0 2px
+
+.container
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+.hidden
+  display: none
+
+.btn
+  background-color: $pink
+  color: $white
+  cursor: pointer
+  padding: 1em 4em
+  border-radius: 4em
+  text-decoration: none
+  border: none
+  font-family: Viga
+  font-size: inherit
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus
+    outline: none
