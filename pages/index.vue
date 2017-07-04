@@ -1,9 +1,7 @@
 <template>
   <v-touch
     @swipeup="goDown"
-    @swipedown="goUp"
-    @DOMMouseScroll="scroll"
-    @mousewheel="scroll">
+    @swipedown="goUp">
     <aside>
       <nav>
         <ul>
@@ -15,10 +13,14 @@
         </ul>
       </nav>
     </aside>
-    <Welcome/>
-    <About @jump-to-contact="currentToContact"/>
-    <Portfolio id="portfolio"/>
-    <Contact/>
+    <main
+        @DOMMouseScroll="scroll"
+        @mousewheel="scroll">
+        <Welcome/>
+        <About @jump-to-contact="currentToContact"/>
+        <Portfolio id="portfolio"/>
+        <Contact/>
+    </main>
   </v-touch>
 </template>
 
