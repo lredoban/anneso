@@ -17,9 +17,9 @@
         @DOMMouseScroll="scroll"
         @mousewheel="scroll">
         <Welcome/>
-        <About @jump-to-contact="currentToContact"/>
-        <Portfolio id="portfolio"/>
-        <Contact/>
+        <About @jump-to-contact="currentToContact" :content="about"/>
+        <Portfolio id="portfolio" :portfolio="portfolio"/>
+        <Contact :content="contact"/>
     </main>
   </v-touch>
 </template>
@@ -29,7 +29,9 @@ import Welcome from '~components/Welcome.vue'
 import About from '~components/About.vue'
 import Portfolio from '~components/Portfolio.vue'
 import Contact from '~components/Contact.vue'
+import { getSection, getProjects } from '~plugins/gistGetter.js'
 import Jump from 'jump.js'
+import axios from 'axios'
 
 export default {
   mounted: function () {
@@ -39,6 +41,14 @@ export default {
       }
       e.key === 'ArrowUp' ? this.goUp() : this.goDown()
     })
+  },
+  async asyncData ({ params }) {
+    let { data } = await axios.get(`https://api.github.com/gists/9ecff89f9b61fdd15d2957a8b0057d5d`)
+    return {
+      about: getSection(data.files, 'about'),
+      contact: getSection(data.files, 'contact'),
+      portfolio: getProjects(data.files)
+    }
   },
   data: () => {
     return {
@@ -91,7 +101,7 @@ export default {
 </script>
 
 <style lang='sass'>
-  @import ~assets/css/style
+  @import ~assets/css/helpers
 
   aside
     position: fixed

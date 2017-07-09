@@ -1,8 +1,7 @@
 <template>
   <section id="about" class="container">
-      <h1>Mon profil</h1>
-      <p>Anne-Fofie, 25 ans, <strong>graphiste web & print</strong> bretonne-parisienne depuis 2014 et forte d'une expérience en agence depuis 2013, je vous propoqe tout mon <strong>savoir faire</strong> et ma <strong>passion</strong> afin de construitr ensemble tous vos projets graphiques : du web au print, pour votre entreprise ou un porjet personnel, à proximité ou à distance !</p>
-      <button class="btn" @click="jump" type="button" >Me contacter</button>
+      <div v-html="content"></div>
+      <button class="btn" @click="jump" type="button">Me contacter</button>
       <Infotip :mobile-hide='true'>Portfolio</Infotip>
   </section>
 </template>
@@ -11,6 +10,7 @@
   import Infotip from '~components/Infotip.vue'
 
   export default{
+    props: ['content'],
     components: {
       Infotip
     },

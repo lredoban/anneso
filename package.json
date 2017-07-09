@@ -5,7 +5,10 @@
   "author": "Lovasoa <maitrejedi@lovasoa.fr>",
   "private": true,
   "dependencies": {
+    "axios": "^0.16.2",
+    "front-matter": "^2.1.2",
     "jump.js": "^1.0.2",
+    "marked": "^0.3.6",
     "nuxt": "latest",
     "vue-touch": "next"
   },

@@ -2,7 +2,15 @@
   <section class="fancy">
     <div id="welcome" class="container">
       <h1 class="hidden">Welcome</h1>
-      <img src="~assets/welcome.png" alt="Welcome">
+      <img src="~assets/welcome.png"
+        srcset="
+          /img/welcome288.png 288w,
+          /img/welcome378.png 378w,
+          /img/welcome640.png 640w,
+          /img/welcome1280.png 1280w
+        "
+        size="(min-width: 640px) 640px, 90vw"
+        alt="Welcome">
     </div>
     <Infotip/>
     <div class="copyright">
@@ -25,7 +33,7 @@
 <style lang="sass">
 @import "~assets/css/helpers"
 #welcome img
-  width: 90%
+  width: 90vw
   max-width: 640px
   margin: 0 auto
 .copyright
