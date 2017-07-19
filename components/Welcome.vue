@@ -37,6 +37,8 @@
   max-width: 640px
   margin: 0 auto
 .copyright
+  bottom: 0
+  left: 0
   font-size: .8em
   position: absolute
   width: 100vh

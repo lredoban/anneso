@@ -11,6 +11,7 @@ html
   -moz-osx-font-smoothing: grayscale
   -webkit-font-smoothing: antialiased
   box-sizing: border-box
+  height: 100%
 *, *:before, *:after
   box-sizing: border-box
   margin: 0
@@ -18,14 +19,13 @@ body
   text-align: center
   font-family: $viga
   color: $primary
-  overflow: hidden
+  height: 100%
 section
-  max-width: 100%
   height: 100vh
-  position: relative
-  overflow: hidden
-  .container
-    height: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  text-align: center
   &.fancy
     background: linear-gradient(45deg, $light-blue, $blue)
     color: $purple
@@ -38,12 +38,6 @@ strong
   font-weight: 400
   background-color: $secondary
   padding: 0 2px
-
-.container
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
 
 .hidden
   display: none

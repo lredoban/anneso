@@ -1,27 +1,15 @@
 <template>
-  <v-touch
-    @swipeup="goDown"
-    @swipedown="goUp">
-    <aside>
-      <nav>
-        <ul>
-          <li v-for="(section, index) in sections"
-            @click="current = index"
-            :class="[ index === current ? 'current': '' ]">
-                <span>{{ section.slice(1, section.length) }}</span>
-          </li>
-        </ul>
-      </nav>
-    </aside>
-    <main
-        @DOMMouseScroll="scroll"
-        @mousewheel="scroll">
-        <Welcome/>
-        <About @jump-to-contact="currentToContact" :content="about"/>
-        <Portfolio id="portfolio" :portfolio="portfolio"/>
-        <Contact :content="contact"/>
-    </main>
-  </v-touch>
+  <main v-swiper:mySwiper="swiperOption">
+    <div class="swiper-wrapper">
+      <Welcome class="swiper-slide"/>
+      <About class="swiper-slide" @jump-to-contact="slideTo(sections.length - 1)" :content="about"/>
+      <Portfolio class="swiper-slide" id="portfolio" :portfolio="portfolio"/>
+      <Contact class="swiper-slide" :content="contact"/>
+    </div>
+    <nav>
+      <ul class="menu"></ul>
+    </nav>
+  </main>
 </template>
 
 <script>
@@ -30,18 +18,16 @@ import About from '~components/About.vue'
 import Portfolio from '~components/Portfolio.vue'
 import Contact from '~components/Contact.vue'
 import { getSection, getProjects } from '~plugins/gistGetter.js'
-import Jump from 'jump.js'
 import axios from 'axios'
 
+const _sections = [
+  '#welcome',
+  '#about',
+  '#portfolio',
+  '#contact'
+]
+
 export default {
-  mounted: function () {
-    window.addEventListener('keyup', e => {
-      if (this.scrolling) {
-        return false
-      }
-      e.key === 'ArrowUp' ? this.goUp() : this.goDown()
-    })
-  },
   async asyncData ({ params }) {
     let { data } = await axios.get(`https://api.github.com/gists/9ecff89f9b61fdd15d2957a8b0057d5d`)
     return {
@@ -52,14 +38,18 @@ export default {
   },
   data: () => {
     return {
-      sections: [
-        '#welcome',
-        '#about',
-        '#portfolio',
-        '#contact'
-      ],
       current: 0,
-      scrolling: false
+      sections: _sections,
+      swiperOption: {
+        slidesPerView: 1,
+        pagination: '.menu',
+        paginationClickable: true,
+        direction: 'vertical',
+        mousewheelControl: true,
+        speed: 700,
+        paginationBulletRender: (swiper, index, className) =>
+          `<li class="${className}"><span>${_sections[index].slice(1, _sections[index].length)}</span></li>`
+      }
     }
   },
   components: {
@@ -69,32 +59,8 @@ export default {
     Contact
   },
   methods: {
-    scroll: function (e) {
-      if (this.scrolling) {
-        return false
-      }
-      e.deltaY < 0 ? this.goUp() : this.goDown()
-      return false
-    },
-    goUp: function () {
-      this.current = this.current === 0 ? 0 : this.current - 1
-    },
-    goDown: function () {
-      this.current = this.current === this.sections.length - 1 ? this.current : this.current + 1
-    },
-    currentToContact: function () {
-      this.current = this.sections.length - 1
-    }
-  },
-  watch: {
-    current: function (index) {
-      this.scrolling = true
-      Jump(this.sections[index], {
-        callback: () => {
-          this.scrolling = false
-          return false
-        }
-      })
+    slideTo: function (index) {
+      this.mySwiper.slideTo(index)
     }
   }
 }
@@ -103,42 +69,50 @@ export default {
 <style lang='sass'>
   @import ~assets/css/helpers
 
-  aside
+  main.swiper-container
+    width: 100%
+    height: 100vh
+  nav
     position: fixed
     top: 3em
     right: 0
     z-index: 3
-    ul
-      display: flex
-      flex-direction: column
-      align-items: flex-end
-    li
+  .menu
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    li.swiper-pagination-bullet
       list-style-type: none
       text-align: right
       height: 0px
       width: 2em
       margin: .5em 0
       border-top: 2px solid $purple
+      border-radius: 0
       transition: width .4s ease-in-out .1s, height .4s ease-in-out, color .4s ease
       cursor: pointer
+      background: none
+      color: $primary
+      opacity: 1
       span
+        display: inline
         opacity: 0
         transition: opacity .4s ease-in
-      &.current
+      &-active
         width: 3em
         margin-left: -1em
-    ul:hover
-      li
-        height: 1.4em
-        width: 100%
-        padding-right: 5px
-        transition: width .4s ease-in-out, height .4s ease-in-out .2s
-        span
-          opacity: 1
-          transition: opacity .4s ease-in .4s
-        &:hover
-          color: $purple
-        &.current
-          color: $purple
-          margin-left: 0
+  .menu:hover
+    li.swiper-pagination-bullet
+      height: 1.4em
+      width: 100%
+      padding-right: 5px
+      transition: width .4s ease-in-out, height .4s ease-in-out .2s
+      span
+        opacity: 1
+        transition: opacity .4s ease-in .4s
+      &-active
+        color: $purple
+        margin-left: 0
+      &:hover
+        color: $purple
 </style>

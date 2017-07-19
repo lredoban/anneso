@@ -19,6 +19,9 @@
 <style lang="sass">
   @import "~assets/css/variables"
 
+  section
+    flex-direction: column
+
   form
     padding: 1em
 

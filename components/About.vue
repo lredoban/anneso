@@ -31,4 +31,5 @@
       background-repeat: no-repeat
       background-size: 50vh
       background-position: bottom left
+      flex-direction: column
 </style>

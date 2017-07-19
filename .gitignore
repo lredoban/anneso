@@ -11,4 +11,5 @@ npm-debug.log
 dist
 
 # Mac shit
+.DS_Store
 */.DS_Store

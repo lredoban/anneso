@@ -44,7 +44,16 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-    }
+    },
+    vendor: [
+      'axios',
+      'swiper'
+    ]
   },
-  plugins: ['~plugins/touch']
+  plugins: [
+    { src: '~plugins/swiper.js', ssr: false }
+  ],
+  css: [
+    'swiper/dist/css/swiper.css'
+  ]
 }
