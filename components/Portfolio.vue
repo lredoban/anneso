@@ -10,7 +10,7 @@
     <div v-swiper:mySwiper="swiperOption">
       <div class="swiper-wrapper">
         <div class="swiper-slide" :key="project.title" v-for="project in filteredPorjects">
-          <div class="item">
+          <div class="item" @click="showProject(project.content)">
             <img :src="project.meta.image" :alt="project.title">
             <h3>{{ project.title }}</h3>
             <p>{{ project.meta.categories.join(' - ') }}</p>
@@ -80,6 +80,9 @@
     methods: {
       isCurrent: function (cat) {
         return cat === this.currentCategory
+      },
+      showProject: function (content) {
+        this.$emit('show', content)
       }
     }
   }

@@ -3,12 +3,26 @@
     <div class="swiper-wrapper">
       <Welcome class="swiper-slide"/>
       <About class="swiper-slide" @jump-to-contact="slideTo(sections.length - 1)" :content="about"/>
-      <Portfolio class="swiper-slide" id="portfolio" :portfolio="portfolio"/>
+      <Portfolio class="swiper-slide" id="portfolio" :portfolio="portfolio" @show="showProject"/>
       <Contact class="swiper-slide" :content="contact"/>
     </div>
     <nav>
       <ul class="menu"></ul>
     </nav>
+    <modal name="project"
+      :adaptive="true"
+      @opened="beforeOpen"
+      @closed="beforeClose"
+      width="100%" height="100%">
+      <div slot="top-right">
+        <button @click="$modal.hide('project')">
+          ❌
+        </button>
+      </div>
+      <div v-html="project">
+
+      </div>
+    </modal>
   </main>
 </template>
 
@@ -40,6 +54,7 @@ export default {
     return {
       current: 0,
       sections: _sections,
+      project: '',
       swiperOption: {
         slidesPerView: 1,
         pagination: '.menu',
@@ -61,6 +76,23 @@ export default {
   methods: {
     slideTo: function (index) {
       this.mySwiper.slideTo(index)
+    },
+    showProject: function (content) {
+      this.project = content
+      this.$modal.show('project')
+    },
+    beforeOpen: function (event) {
+      if (event.state) {
+        this.mySwiper.disableMousewheelControl()
+        this.mySwiper.disableTouchControl()
+      } else {
+        this.mySwiper.enableMousewheelControl()
+        this.mySwiper.enableTouchControl()
+      }
+    },
+    beforeClose: function (event) {
+      // console.info('beforeClose')
+      // this.mySwiper.enableMousewheelControl()
     }
   }
 }
@@ -115,4 +147,10 @@ export default {
         margin-left: 0
       &:hover
         color: $purple
+  .v--modal-top-right
+    z-index: 1
+  .v--modal-overlay .v--modal-box
+    overflow: auto
+  .v--modal
+    background: rgba(255,255,255,0.92)
 </style>
