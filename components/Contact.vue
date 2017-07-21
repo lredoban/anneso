@@ -1,5 +1,6 @@
 <template>
   <section id="contact" class="container">
+      <h2>{{ title }}</h2>
       <div v-html="content"></div>
       <form action="/" method="post">
         <input type="text" name="name" placeholder="Nom, Prénom">
@@ -12,7 +13,7 @@
 
 <script>
   export default{
-    props: ['content']
+    props: ['title', 'content']
   }
 </script>
 

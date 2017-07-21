@@ -1,5 +1,6 @@
 <template>
   <section id="about" class="container">
+      <h2>{{ title }}</h2>
       <div v-html="content"></div>
       <button class="btn" @click="jump" type="button">Me contacter</button>
       <Infotip :mobile-hide='true'>Portfolio</Infotip>
@@ -10,7 +11,7 @@
   import Infotip from '~components/Infotip.vue'
 
   export default{
-    props: ['content'],
+    props: ['title', 'content'],
     components: {
       Infotip
     },

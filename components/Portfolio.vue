@@ -9,11 +9,11 @@
     </div>
     <div v-swiper:mySwiper="swiperOption">
       <div class="swiper-wrapper">
-        <div class="swiper-slide" :key="project.title" v-for="project in filteredPorjects">
+        <div class="swiper-slide" :key="project.title" v-for="project in filteredProjects">
           <div class="item" @click="showProject(project.content)">
-            <img :src="project.meta.image" :alt="project.title">
+            <img :src="project.featuredImage" :alt="project.title">
             <h3>{{ project.title }}</h3>
-            <p>{{ project.meta.categories.join(' - ') }}</p>
+            <p>{{ project.categories.join(' - ') }}</p>
           </div>
         </div>
       </div>
@@ -26,7 +26,7 @@
 
 <script>
   export default{
-    props: ['portfolio'],
+    props: ['categories', 'projects'],
     data: () => {
       return {
         currentCategory: 'tout',
@@ -60,21 +60,11 @@
       }
     },
     computed: {
-      categories: function () {
-        return this.portfolio.reduce((accu, p) => {
-          p.meta.categories.map(c => {
-            if (!accu.includes(c)) {
-              accu.push(c)
-            }
-          })
-          return accu
-        }, [])
-      },
-      filteredPorjects: function () {
+      filteredProjects: function () {
         if (this.currentCategory === 'tout') {
-          return this.portfolio
+          return this.projects
         }
-        return this.portfolio.filter(p => p.meta.categories.includes(this.currentCategory))
+        return this.projects.filter(p => p.categories.includes(this.currentCategory))
       }
     },
     methods: {

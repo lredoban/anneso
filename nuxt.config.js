@@ -46,7 +46,6 @@ module.exports = {
       }
     },
     vendor: [
-      'axios',
       'swiper'
     ]
   },

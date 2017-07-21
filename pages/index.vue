@@ -2,9 +2,9 @@
   <main v-swiper:mySwiper="swiperOption">
     <div class="swiper-wrapper">
       <Welcome class="swiper-slide"/>
-      <About class="swiper-slide" @jump-to-contact="slideTo(sections.length - 1)" :content="about"/>
-      <Portfolio class="swiper-slide" id="portfolio" :portfolio="portfolio" @show="showProject"/>
-      <Contact class="swiper-slide" :content="contact"/>
+      <About class="swiper-slide" @jump-to-contact="slideTo(sections.length - 1)" :content="about.content" :title="about.title"/>
+      <Portfolio class="swiper-slide" id="portfolio" :projects="projects" :categories="categories" @show="showProject"/>
+      <Contact class="swiper-slide" :content="contact.content" :title="contact.title"/>
     </div>
     <nav>
       <ul class="menu"></ul>
@@ -31,8 +31,7 @@ import Welcome from '~components/Welcome.vue'
 import About from '~components/About.vue'
 import Portfolio from '~components/Portfolio.vue'
 import Contact from '~components/Contact.vue'
-import { getSection, getProjects } from '~plugins/gistGetter.js'
-import axios from 'axios'
+import { getPages, getCategories, getProjects } from '~plugins/contentful.js'
 
 const _sections = [
   '#welcome',
@@ -43,12 +42,13 @@ const _sections = [
 
 export default {
   async asyncData ({ params }) {
-    let { data } = await axios.get(`https://api.github.com/gists/9ecff89f9b61fdd15d2957a8b0057d5d`)
-    return {
-      about: getSection(data.files, 'about'),
-      contact: getSection(data.files, 'contact'),
-      portfolio: getProjects(data.files)
-    }
+    let { about, contact } = await getPages()
+    let categories = await getCategories()
+    let projects = await getProjects()
+    return { about, contact, categories, projects }
+  },
+  created: () => {
+    console.log('projects', this.projects)
   },
   data: () => {
     return {
