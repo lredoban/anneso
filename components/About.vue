@@ -26,11 +26,13 @@
 <style lang="sass">
   @import "~assets/css/helpers"
 
+  #about
+    flex-direction: column
+
   @media #{$medium-up}
     #about
       background: url('~assets/bg-about.png')
       background-repeat: no-repeat
       background-size: 50vh
       background-position: bottom left
-      flex-direction: column
 </style>

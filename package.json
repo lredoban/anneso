@@ -5,11 +5,13 @@
   "author": "Lovasoa <maitrejedi@lovasoa.fr>",
   "private": true,
   "dependencies": {
+    "axios": "^0.16.2",
     "contentful": "^4.5.0",
     "marked": "^0.3.6",
     "nuxt": "latest",
     "vue-awesome-swiper": "^2.5.2",
-    "vue-js-modal": "^1.2.4"
+    "vue-js-modal": "^1.2.4",
+    "vuelidate": "^0.5.0"
   },
   "scripts": {
     "dev": "nuxt",

@@ -51,7 +51,8 @@ module.exports = {
   },
   plugins: [
     { src: '~plugins/swiper.js', ssr: false },
-    '~plugins/vue-js-modal'
+    '~plugins/vue-js-modal',
+    '~plugins/vuelidate'
   ],
   css: [
     'swiper/dist/css/swiper.css'

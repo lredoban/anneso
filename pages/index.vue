@@ -47,9 +47,6 @@ export default {
     let projects = await getProjects()
     return { about, contact, categories, projects }
   },
-  created: () => {
-    console.log('projects', this.projects)
-  },
   data: () => {
     return {
       current: 0,

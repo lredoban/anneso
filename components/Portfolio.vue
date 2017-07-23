@@ -37,19 +37,19 @@
           nextButton: '.swiper-button-next',
           prevButton: '.swiper-button-prev',
           centeredSlides: true,
-          spaceBetween: 70,
+          spaceBetween: 10,
           breakpoints: {
-            1024: {
+            920: {
               slidesPerView: 5,
-              spaceBetween: 40
+              spaceBetween: 10
             },
             768: {
               slidesPerView: 3,
-              spaceBetween: 30
+              spaceBetween: 10
             },
             640: {
               slidesPerView: 2,
-              spaceBetween: 20
+              spaceBetween: 10
             },
             420: {
               slidesPerView: 1,
@@ -82,8 +82,11 @@
   @import "~assets/css/helpers"
 
   #portfolio
+    flex-direction: column
     .filter
       margin-bottom: 2em
+      ul
+        padding-left: 0
       li
         list-style: none
         display: inline-block
@@ -117,11 +120,16 @@
       display: flex
     .swiper-slide
       padding-top: 10%
+      img
+        transform: scale(.8)
+        width: 100%
     .swiper-slide-active > .item
+      h3
+        margin-top: 2em
       h3, p
         display: block
       img
-        transform: scale(1.2)
+        transform: scale(1)
     .item
       margin-bottom: 2em
       h3, p
@@ -129,8 +137,7 @@
       p
         margin: 0 auto
     img
-      height: 15vw
-      margin: 2.5vw
+      width: 70%
       border-radius: 50%
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 
