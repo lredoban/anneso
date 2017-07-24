@@ -19,9 +19,7 @@
           ❌
         </button>
       </div>
-      <div v-html="project">
-
-      </div>
+      <div v-html="project"></div>
     </modal>
   </main>
 </template>
@@ -82,9 +80,11 @@ export default {
       if (event.state) {
         this.mySwiper.disableMousewheelControl()
         this.mySwiper.disableTouchControl()
+        console.warn('controls disabled')
       } else {
         this.mySwiper.enableMousewheelControl()
         this.mySwiper.enableTouchControl()
+        console.warn('controls enabled')
       }
     },
     beforeClose: function (event) {
@@ -147,7 +147,7 @@ export default {
   .v--modal-top-right
     z-index: 1
   .v--modal-overlay .v--modal-box
-    overflow: auto
+    overflow: auto !important
   .v--modal
     background: rgba(255,255,255,0.92)
 </style>
