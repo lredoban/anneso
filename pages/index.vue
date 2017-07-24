@@ -12,7 +12,6 @@
     <modal name="project"
       :adaptive="true"
       @opened="beforeOpen"
-      @closed="beforeClose"
       width="100%" height="100%">
       <div slot="top-right">
         <button @click="$modal.hide('project')">
@@ -80,16 +79,10 @@ export default {
       if (event.state) {
         this.mySwiper.disableMousewheelControl()
         this.mySwiper.disableTouchControl()
-        console.warn('controls disabled')
       } else {
         this.mySwiper.enableMousewheelControl()
         this.mySwiper.enableTouchControl()
-        console.warn('controls enabled')
       }
-    },
-    beforeClose: function (event) {
-      // console.info('beforeClose')
-      // this.mySwiper.enableMousewheelControl()
     }
   }
 }
