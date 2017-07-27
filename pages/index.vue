@@ -38,15 +38,17 @@ const _sections = [
 ]
 
 export default {
+  async asyncData ({ params }) {
+    let { about, contact } = await getPages()
+    let categories = await getCategories()
+    let projects = await getProjects()
+    return { about, contact, categories, projects }
+  },
   data: () => {
     return {
       current: 0,
       sections: _sections,
       project: '',
-      about: {},
-      contact: {},
-      categories: [],
-      projects: [],
       swiperOption: {
         slidesPerView: 1,
         pagination: '.menu',
@@ -58,9 +60,6 @@ export default {
           `<li class="${className}"><span>${_sections[index].slice(1, _sections[index].length)}</span></li>`
       }
     }
-  },
-  created: function () {
-    this.initData()
   },
   components: {
     Welcome,
@@ -84,13 +83,6 @@ export default {
         this.mySwiper.enableMousewheelControl()
         this.mySwiper.enableTouchControl()
       }
-    },
-    initData: async function () {
-      this.projects = await getProjects()
-      this.categories = await getCategories()
-      let { about, contact } = await getPages()
-      this.about = about
-      this.contact = contact
     }
   }
 }
