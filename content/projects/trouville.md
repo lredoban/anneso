@@ -2,9 +2,9 @@
 title: Trouville
 Featured Image: /static/img/ls.jpg
 Categories:
-  - Name: mer
-  - Name: sable
-  - Name: détente
+  - Categorie: mer
+  - Categorie: sable
+  - Categorie: détente
 ---
 ## testing Netlify CSM
 
@@ -14,3 +14,4 @@ Last year to celebrate our 1 year anniversary of our wedding, we went to Trouvil
 
 *Here is a view of a dock in Trouville*
 ![Trouville dock](/static/img/IMG_20160912_132324.jpg)
+
