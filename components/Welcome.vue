@@ -22,10 +22,43 @@
 
 <script>
   import Infotip from '~components/Infotip.vue'
-
+  import throttle from 'lodash/throttle'
   export default{
     components: {
       Infotip
+    },
+    mounted () {
+      if (process.BROWSER_BUILD) {
+        this.$el.addEventListener('mousemove', throttle(this.updateGradient, 80))
+      }
+    },
+    methods: {
+      updateGradient ({x, y}) {
+        const intensityMax = 42
+        const pos = {x, y}
+        const max = {x: window.innerWidth / 2, y: window.innerHeight / 2}
+        const centeredPos = {
+          x: pos.x - Math.floor(max.x),
+          y: pos.y - Math.floor(max.y)
+        }
+        const radAngle = Math.atan2(-centeredPos.x, centeredPos.y)
+        const degAngle = Math.floor(this.convertRadInDeg(radAngle))
+        // ne calculer que au début et lors d'un resize
+        const distanceMax = this.pythagore(max.x, max.y)
+        const distance = this.pythagore(centeredPos.x, centeredPos.y)
+        const intensity = intensityMax - (distance * intensityMax / distanceMax)
+        console.warn(`${degAngle}°`, distance, distanceMax, intensity)
+        // this.setBackground(this.$el, degAngle, intensity)
+      },
+      setBackground (el, deg, intensity) {
+        el.style.background = `linear-gradient(${deg}deg, #09d4ff ${intensity}%, #0978f5)`
+      },
+      convertRadInDeg (angle) {
+        return angle * 360 / (2 * Math.PI)
+      },
+      pythagore (x, y) {
+        return Math.floor(Math.sqrt(x * x + y * y))
+      }
     }
   }
 </script>
