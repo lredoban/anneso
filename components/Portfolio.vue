@@ -3,8 +3,8 @@
     <div class="container">
       <h2>Portfolio</h2>
       <ul class="filter">
-        <li :class="{current: isCurrent('tout')}" @click="currentCategory='tout'">Tout</li>
-        <li :class="{current: isCurrent(cat)}" v-for="cat in categories" @click="currentCategory = cat">{{ cat }}</li>
+        <li :class="{current: isCurrent('tout')}" @click="currentCategory='tout'"><span>Tout</span></li>
+        <li :class="{current: isCurrent(cat)}" v-for="cat in categories" @click="currentCategory = cat"><span>{{ cat }}</span></li>
       </ul>
     </div>
     <div v-swiper:mySwiper="swiperOption">
@@ -12,15 +12,17 @@
         <div class="swiper-slide" :key="project.title" v-for="project in filteredProjects">
           <div class="item" @click="showProject(project.content)">
             <img :src="project.featuredImage" :alt="project.title">
-            <h3>{{ project.title }}</h3>
-            <p>{{ project.categories.join(' - ') }}</p>
+            <div class="overlay">
+              <h3>{{ project.title }}</h3>
+              <p>{{ project.categories.join(' - ') }}</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="swiper-pagination swiper-pagination-bullets"></div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
     </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination swiper-pagination-bullets"></div>
   </section>
 </template>
 
@@ -31,14 +33,15 @@
       return {
         currentCategory: 'tout',
         swiperOption: {
-          slidesPerView: 7,
+          slidesPerView: 5,
+          slidesPerGroup: 5,
+          slidesPerColumn: 2,
           pagination: '.swiper-pagination',
           paginationClickable: true,
           nextButton: '.swiper-button-next',
           prevButton: '.swiper-button-prev',
-          centeredSlides: true,
-          spaceBetween: 10,
-          breakpoints: {
+          spaceBetween: 30
+          /* breakpoints: {
             920: {
               slidesPerView: 5,
               spaceBetween: 10
@@ -55,7 +58,7 @@
               slidesPerView: 1,
               spaceBetween: 10
             }
-          }
+          } */
         }
       }
     },
@@ -81,8 +84,11 @@
 <style lang="sass" scoped>
   @import "~assets/css/helpers"
 
-  #portfolio
+  .fancy
     flex-direction: column
+    justify-content: space-between
+    h2
+      margin-bottom: 0
     .filter
       margin-bottom: 2em
       ul
@@ -94,51 +100,61 @@
         margin-left: 0.3em
         text-transform: capitalize
         cursor: pointer
+        span
+          transition: color 0.4s ease
         &::before
           content: "/"
           margin-right: 0.3em
         &:first-child::before
           content: none
-        &.current
+        &.current span
           color: $pink
           border-bottom: 2px solid $pink
+        &:hover span
+          color: $pink
+
     .container
       width: 100%
       display: flex
       flex-wrap: wrap
       justify-content: center
       flex-direction: column
+      margin-top: 1em
     @media #{$small-up}
       .container
         flex-direction: row
-        align-items: baseline
+        align-items: center
       .filter
         margin-bottom: 0
     .swiper-container
-      width: 100%
+      width: 80%
     .swiper-wrapper
       display: flex
     .swiper-slide
-      padding-top: 10%
       img
-        transform: scale(.8)
         width: 100%
-    .swiper-slide-active > .item
-      h3
-        margin-top: 2em
-      h3, p
-        display: block
-      img
-        transform: scale(1)
     .item
-      margin-bottom: 2em
-      h3, p
-        display: none
+      position: relative
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+      border-radius: 50%
+      .overlay
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        background: rgba(255, 255, 255, 0.6)
       p
         margin: 0 auto
     img
       width: 70%
       border-radius: 50%
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+      position: relative
+    .swiper-pagination
+      margin-bottom: 1em
+      position: relative
+</style>
 
+<style lang="sass">
+  .swiper-pagination-bullet
+    margin: 0 0.3em
 </style>

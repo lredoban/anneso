@@ -2,7 +2,9 @@
   <section id="about" class="container">
       <h2>{{ title }}</h2>
       <div v-html="content"></div>
-      <button class="btn" @click="jump" type="button">Me contacter</button>
+      <button class="btn" @click="jump" type="button">
+        <span>Me contacter</span>
+      </button>
       <Infotip :mobile-hide='true'>Portfolio</Infotip>
   </section>
 </template>

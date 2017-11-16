@@ -43,7 +43,8 @@ strong
   display: none
 
 .btn
-  background-color: $pink
+  overflow: hidden
+  position: relative
   color: $white
   cursor: pointer
   padding: 1em 4em
@@ -53,6 +54,28 @@ strong
   font-family: Viga
   font-size: inherit
   margin: 1.5em
+  span
+    position: relative
+    z-index: 3
+  &::before, &::after
+    content: ""
+    position: absolute
+    border-radius: 4em
+    height: 100%
+    width: 100%
+    top: 0
+    left: 0
+    background-color: $purple
+  &::after
+    z-index: 1
+    background-color: $pink
+  &::before
+    z-index: 2
+    background-color: $purple
+    transform: translateX(-100%)
+    transition: all 0.6s ease
+  &:hover::before
+    transform: translateX(0)
 
 input:focus,
 select:focus,

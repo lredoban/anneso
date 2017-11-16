@@ -23,41 +23,42 @@
 <script>
   import Infotip from '~components/Infotip.vue'
   import throttle from 'lodash/throttle'
+  import debounce from 'lodash/debounce'
+
+  const degMax = 112
+  const degMin = 27
+  const degDiff = degMax - degMin
+  const intensityMax = 42
+
   export default{
     components: {
       Infotip
     },
+    data () {
+      return {
+        max: { x: 0, y: 0 }
+      }
+    },
     mounted () {
       if (process.BROWSER_BUILD) {
-        this.$el.addEventListener('mousemove', throttle(this.updateGradient, 80))
+        this.setMax()
+        this.$el.addEventListener('mousemove', throttle(this.updateGradient, 77))
+        window.addEventListener('resize', debounce(this.setMax, 500))
       }
     },
     methods: {
       updateGradient ({x, y}) {
-        const intensityMax = 42
         const pos = {x, y}
-        const max = {x: window.innerWidth / 2, y: window.innerHeight / 2}
-        const centeredPos = {
-          x: pos.x - Math.floor(max.x),
-          y: pos.y - Math.floor(max.y)
-        }
-        const radAngle = Math.atan2(-centeredPos.x, centeredPos.y)
-        const degAngle = Math.floor(this.convertRadInDeg(radAngle))
-        // ne calculer que au début et lors d'un resize
-        const distanceMax = this.pythagore(max.x, max.y)
-        const distance = this.pythagore(centeredPos.x, centeredPos.y)
-        const intensity = intensityMax - (distance * intensityMax / distanceMax)
-        console.warn(`${degAngle}°`, distance, distanceMax, intensity)
-        // this.setBackground(this.$el, degAngle, intensity)
+        const angle = Math.round((pos.y * degDiff / this.max.y) + degMin)
+        const intensity = Math.round(pos.x * intensityMax / this.max.x)
+
+        this.setBackground(this.$el, angle, intensity)
       },
       setBackground (el, deg, intensity) {
         el.style.background = `linear-gradient(${deg}deg, #09d4ff ${intensity}%, #0978f5)`
       },
-      convertRadInDeg (angle) {
-        return angle * 360 / (2 * Math.PI)
-      },
-      pythagore (x, y) {
-        return Math.floor(Math.sqrt(x * x + y * y))
+      setMax () {
+        this.max = {x: window.innerWidth, y: window.innerHeight}
       }
     }
   }

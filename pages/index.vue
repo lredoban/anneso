@@ -14,11 +14,11 @@
       @opened="beforeOpen"
       width="100%" height="100%">
       <div slot="top-right">
-        <button @click="$modal.hide('project')">
-          ❌
+        <button class="close" @click="$modal.hide('project')">
+          <span>❌</span>
         </button>
       </div>
-      <div v-html="project"></div>
+      <div class="project" v-html="project"></div>
     </modal>
   </main>
 </template>
@@ -42,6 +42,9 @@ export default {
     let { about, contact } = await getPages()
     let categories = await getCategories()
     let projects = await getProjects()
+    getPages().catch(error => { console.warn('couille dans le paté getPages', error) })
+    getCategories().catch(error => { console.warn('couille dans le paté getCategories', error) })
+    getProjects().catch(error => { console.warn('couille dans le paté getProjects', error) })
     return { about, contact, categories, projects }
   },
   data: () => {
@@ -90,6 +93,7 @@ export default {
 
 <style lang='sass'>
   @import ~assets/css/helpers
+  @import ~assets/css/project
 
   main.swiper-container
     width: 100%

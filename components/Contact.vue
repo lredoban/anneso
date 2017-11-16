@@ -17,7 +17,9 @@
           :class="{'error': $v.message.$error}"
         ></textarea>
         <!--<pre style='text-align:left'>name: {{ $v.name }}</pre>-->
-        <button class="btn" type="submit" value="Submit" v-bind:disabled="$v.$invalid" v-if="!success">Envoyer</button>
+        <button class="btn" type="submit" value="Submit" v-bind:disabled="$v.$invalid" v-if="!success">
+          <span>Envoyer</span>
+        </button>
       </form>
       <div class="congratulation" v-if="success">
         Merci {{name}} votre message vient d'être envoyé ! <br>
