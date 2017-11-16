@@ -78,10 +78,15 @@
 </script>
 
 <style lang="sass">
-  @import "~assets/css/variables"
+  @import "~assets/css/helpers"
 
   #contact
     flex-direction: column
+    @media #{$medium-up}
+      background: url('~assets/bg-contact.png')
+      background-repeat: no-repeat
+      background-size: 50vh
+      background-position: bottom right
     .wrapper
       max-width: 720px
     p
@@ -113,11 +118,4 @@
   .congratulation
     color: $pink
     font-size: 120%
-
-  @media #{medium-up}
-    #contact
-      background: url('~assets/bg-contact.png')
-      background-repeat: no-repeat
-      background-size: 50vh
-      background-position: bottom right
 </style>
