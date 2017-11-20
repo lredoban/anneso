@@ -3,7 +3,7 @@
     <div class="container">
       <h2>Portfolio</h2>
       <ul class="filter">
-        <li :class="{current: isCurrent('tout')}" @click="currentCategory='tout'"><span>Tout</span></li>
+        <li :class="{current: isCurrent('tout')}" @click="setCurrent('tout')"><span>Tout</span></li>
         <li :class="{current: isCurrent(cat)}" v-for="cat in categories" @click="setCurrent(cat)"><span>{{ cat }}</span></li>
       </ul>
     </div>
