@@ -10,12 +10,16 @@
     <div v-swiper:mySwiper="swiperOption">
       <div class="swiper-wrapper">
         <div class="swiper-slide" :key="project.title" v-for="project in filteredProjects">
-          <div class="item" @click="showProject(project.content)">
+          <div class="item" @click="handleClick(project.content, $event)">
             <img :src="project.featuredImage" :alt="project.title">
             <div class="overlay">
               <h3>{{ project.title }}</h3>
               <p>{{ project.categories.join(' - ') }}</p>
             </div>
+          </div>
+          <div class="item_informations">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.categories.join(' - ') }}</p>
           </div>
         </div>
       </div>
@@ -42,22 +46,18 @@
           prevButton: '.swiper-button-prev',
           spaceBetween: 30,
           breakpoints: {
-            768: {
+            768: {  // when window width is <= 768px
               slidesPerView: 3,
               slidesPerGroup: 3,
               spaceBetween: 10
             },
-            640: {
-              slidesPerView: 1,
+            640: {  // when window width is <= 640px
+              slidesPerView: 2,
               slidesPerGroup: 1,
-              spaceBetween: 10,
-              slidesPerColumn: 1
-            },
-            420: {
-              slidesPerView: 1,
-              slidesPerGroup: 1,
-              spaceBetween: 10,
-              slidesPerColumn: 1
+              spaceBetween: 36,
+              paginationType: 'fraction',
+              slidesPerColumn: 1,
+              centeredSlides: true
             }
           }
         }
@@ -81,8 +81,16 @@
           this.mySwiper.update()
         })
       },
-      showProject: function (content) {
-        this.$emit('show', content)
+      handleClick: function (content, event) {
+        const papa = event.srcElement.tagName === 'DIV' ? event.srcElement.parentNode : event.srcElement.parentNode.parentNode.parentNode
+        const arrayList = [...papa.classList]
+        if (arrayList.includes('swiper-slide-next')) {
+          this.mySwiper.slideNext()
+        } else if (arrayList.includes('swiper-slide-prev')) {
+          this.mySwiper.slidePrev()
+        } else {
+          this.$emit('show', content)
+        }
       }
     }
   }
@@ -136,19 +144,22 @@
         margin-bottom: 0
         padding-top: 1.5em
     .swiper-container
-      width: 60%
-      @media #{$small-up}
-        width: 80%
+      width: 100%
+    //  @media #{$small-up}
+    //    width: 80%
     .swiper-wrapper
       display: flex
+    .swiper-slide
+      padding-top: 20px
     .item
       position: relative
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
       border-radius: 50%
       cursor: pointer
       &:hover
-        &::after, .overlay
-          opacity: 1
+        @media #{$small-up}
+          &::after, .overlay
+            opacity: 1
       img
         width: 100%
         border-radius: 50%
@@ -164,7 +175,7 @@
         transition: opacity .65s ease
       &::after
         content: ""
-        opacity: 0
+        opacity: 1
         position: absolute
         top: 0
         bottom: 0
@@ -172,20 +183,55 @@
         left: 0
         border-radius: 50%
         transition: opacity .5s ease
-        background: rgba(255, 255, 255, 0.85)
+        background: rgba($pink, 0.85)
+        @media #{$small-up}
+          opacity: 0
+          background: rgba(255, 255, 255, 0.85)
       p
         margin: 0 auto
+    .swiper-slide-prev .item::before,
+    .swiper-slide-next .item::before
+      content: ""
+      z-index: 3
+      position: absolute
+      top: 0
+      bottom: 0
+      right: 66%
+      height: 100%
+      width: 32px
+      background: url("~static/img/next-previous.svg")
+      background-repeat: no-repeat
+      background-position: center
+      background-size: 70%
+    .swiper-slide-prev .item::before
+      left: 66%
+      transform: rotate(180deg)
+    .swiper-slide-active
+      .item
+        transform: scale(1.3)
+      .item::after
+        opacity: 0
+      .item_informations
+        opacity: 1
+        transition: opacity 0.5s ease 0.1s
+    .item_informations
+      margin-top: 2em
+      transition: opacity 0.3s ease
+      opacity: 0
+      @media #{$small-up}
+        display: none
     .swiper-pagination
       margin-bottom: 1em
       position: relative
     .swiper-button-prev, .swiper-button-next
+      display: none
       background: $purple
       height: 2.5em
       width: 2.5em
       border-radius: 2em
-      margin-top: 2.5em
+      margin-top: 1em
       @media #{$small-up}
-        margin-top: 1em
+        display: block
       &::before, &::after
         content: ""
         position: absolute
