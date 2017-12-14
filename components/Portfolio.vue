@@ -145,8 +145,8 @@
         padding-top: 1.5em
     .swiper-container
       width: 100%
-    //  @media #{$small-up}
-    //    width: 80%
+      @media #{$small-up}
+        width: 80%
     .swiper-wrapper
       display: flex
     .swiper-slide
@@ -203,12 +203,16 @@
       background-repeat: no-repeat
       background-position: center
       background-size: 70%
+      @media #{$small-up}
+        display: none
     .swiper-slide-prev .item::before
       left: 66%
       transform: rotate(180deg)
     .swiper-slide-active
       .item
         transform: scale(1.3)
+        @media #{$small-up}
+          transform: none
       .item::after
         opacity: 0
       .item_informations
@@ -230,6 +234,8 @@
       width: 2.5em
       border-radius: 2em
       margin-top: 1em
+      &:hover
+        background: rgba($pink, 0.85)
       @media #{$small-up}
         display: block
       &::before, &::after

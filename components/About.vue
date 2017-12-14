@@ -1,7 +1,7 @@
 <template>
   <section id="about" class="container">
       <h2>{{ title }}</h2>
-      <div v-html="content"></div>
+      <div class="about-text" v-html="content"></div>
       <button class="btn" @click="jump" type="button">
         <span class="btn_hover"></span>
         <span>Me contacter</span>
@@ -38,4 +38,9 @@
       background-repeat: no-repeat
       background-size: 50vh
       background-position: bottom left
+  
+  .about-text
+    margin: 2em 0
+    @media #{$medium-up}
+    margin: 3em 0
 </style>

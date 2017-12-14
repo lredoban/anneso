@@ -28,6 +28,7 @@
     p
       font-size: .7em
       padding: 1em
+      letter-spacing: 1px
     img
       width: 30px
       animation: move 2.7s infinite
