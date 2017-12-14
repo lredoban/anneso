@@ -54,30 +54,36 @@ strong
   font-family: Viga
   font-size: inherit
   margin: 1.5em
+  background-color: $purple
+  z-index: 1
   span
     position: relative
     z-index: 3
-  &::before, &::after
-    content: ""
-    position: absolute
-    border-radius: 4em
-    height: 100%
-    width: 100%
-    top: 0
-    left: 0
-    background-color: $purple
-  &::after
-    z-index: 1
-    background-color: $pink
-  &:not([disabled])
-    &::before
+    &.btn_hover
+      --angle-width: 50px
+
+      position: absolute
+      top: 0
+      left: 0
+      height: 100%
+      width: 100%
+      background-color: $pink
       z-index: 2
-      background-color: $purple
-      transform: translateX(-100%)
-      transition: all 0.6s ease 0.2s
-    &:hover::before
-      transform: translateX(0)
-      transition: all 0.4s ease 0s
+      transform: translateX(calc(-100% - var(--angle-width)))
+      transition: all 0.6s ease 0.15s
+      &::after
+        content: ''
+        position: absolute
+        top: 0
+        left: 99%
+        height: 0
+        width: 0
+        border-bottom: 70px solid transparent
+        border-left: var(--angle-width) solid $pink
+  &:not([disabled]):hover .btn_hover
+    transition: all 0.5s ease-out 0s
+    transform: translateX(0%)
+
 
 input:focus,
 select:focus,

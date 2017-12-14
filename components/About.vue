@@ -3,6 +3,7 @@
       <h2>{{ title }}</h2>
       <div v-html="content"></div>
       <button class="btn" @click="jump" type="button">
+        <span class="btn_hover"></span>
         <span>Me contacter</span>
       </button>
       <Infotip :mobile-hide='true'>Portfolio</Infotip>

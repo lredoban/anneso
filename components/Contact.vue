@@ -18,13 +18,14 @@
         ></textarea>
         <!--<pre style='text-align:left'>name: {{ $v.name }}</pre>-->
         <button class="btn" type="submit" value="Submit" v-bind:disabled="$v.$invalid" v-if="!success">
+          <span class="btn_hover"></span>
           <span>Envoyer</span>
         </button>
       </form>
       <div class="congratulation" v-if="success">
         Merci {{name}} votre message vient d'être envoyé ! <br>
         Anne-Sophie vous répondra au plus vite sur {{email}} . <br>
-        bisous doux 😘 !!!
+        bisous doux 😘 !!!
       </div>
     </div>
   </section>

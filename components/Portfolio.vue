@@ -172,7 +172,7 @@
         left: 0
         border-radius: 50%
         transition: opacity .5s ease
-        background: rgba(255, 255, 255, 0.6)
+        background: rgba(255, 255, 255, 0.85)
       p
         margin: 0 auto
     .swiper-pagination
