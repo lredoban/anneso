@@ -98,11 +98,14 @@ export default {
   main.swiper-container
     width: 100%
     height: 100vh
+  main > .swiper-wrapper > .swiper-slide:first-child
+    height: 100vh
+    z-index: 6
   nav
     position: fixed
     top: 3em
     right: 0
-    z-index: 3
+    z-index: 10
   .menu
     display: flex
     flex-direction: column
