@@ -82,6 +82,10 @@
         })
       },
       handleClick: function (content, event) {
+        if (document.body.clientWidth >= 640) {
+          return this.$emit('show', content)
+        }
+
         const papa = event.srcElement.tagName === 'DIV' ? event.srcElement.parentNode : event.srcElement.parentNode.parentNode.parentNode
         const arrayList = [...papa.classList]
         if (arrayList.includes('swiper-slide-next')) {
