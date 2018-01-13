@@ -27,7 +27,10 @@
           <span>❌</span>
         </button>
       </div>
-      <div class="project" v-html="project"></div>
+      <div class="project" v-if="project">
+        <h3>{{project.title }} - <small>{{project.categories.join(' & ') }}</small></h3>
+        <div v-html="project.content"></div>
+      </div>
     </modal>
   </main>
 </template>
@@ -83,8 +86,8 @@ export default {
     slideTo: function (index) {
       this.mySwiper.slideTo(index)
     },
-    showProject: function (content) {
-      this.project = content
+    showProject: function (project) {
+      this.project = project
       this.$modal.show('project')
     },
     beforeOpen: function (event) {

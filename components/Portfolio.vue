@@ -10,7 +10,7 @@
     <div v-swiper:mySwiper="swiperOption">
       <div class="swiper-wrapper">
         <div class="swiper-slide" :key="project.title" v-for="project in filteredProjects">
-          <div class="item" @click="handleClick(project.content, $event)">
+          <div class="item" @click="handleClick(project, $event)">
             <img :src="project.featuredImage" :alt="project.title">
             <div class="overlay">
               <h3>{{ project.title }}</h3>
@@ -81,9 +81,9 @@
           this.mySwiper.update()
         })
       },
-      handleClick: function (content, event) {
+      handleClick: function (project, event) {
         if (document.body.clientWidth >= 640) {
-          return this.$emit('show', content)
+          return this.$emit('show', project)
         }
 
         const papa = event.srcElement.tagName === 'DIV' ? event.srcElement.parentNode : event.srcElement.parentNode.parentNode.parentNode
@@ -93,7 +93,7 @@
         } else if (arrayList.includes('swiper-slide-prev')) {
           this.mySwiper.slidePrev()
         } else {
-          this.$emit('show', content)
+          this.$emit('show', project)
         }
       }
     }
@@ -252,6 +252,7 @@
         height: 3px
         border-radius: 3px
     .swiper-button-prev
+      animation: moveLeft 2.7s infinite
       &::before
         transform-origin: left
         transform: translate(-50%, calc(-50% - 1px)) rotate(45deg)
@@ -259,12 +260,27 @@
         transform-origin: left
         transform: translate(-50%, calc(-50% + 1px)) rotate(-45deg)
     .swiper-button-next
+      animation: moveRight 2.7s infinite
       &::before
         transform-origin: right
         transform: translate(-50%, calc(-50% + 1px)) rotate(45deg)
       &::after
         transform-origin: right
         transform: translate(-50%, calc(-50% - 1px)) rotate(-45deg)
+  @keyframes moveRight
+    0%
+      transform: translateX(0%)
+    27%
+      transform: translateX(17%)
+    100%
+      transform: translateX(0%)
+  @keyframes moveLeft
+    0%
+      transform: translateX(0%)
+    27%
+      transform: translateX(-17%)
+    100%
+      transform: translateX(0%)
 </style>
 
 <style lang="sass">
