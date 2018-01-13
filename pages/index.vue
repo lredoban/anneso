@@ -2,9 +2,18 @@
   <main v-swiper:mySwiper="swiperOption">
     <div class="swiper-wrapper">
       <Welcome class="swiper-slide"/>
-      <About class="swiper-slide" @jump-to-contact="slideTo(sections.length - 1)" :content="about.content" :title="about.title"/>
+      <About class="swiper-slide" 
+        @jump-to-contact="slideTo(sections.length - 1)"
+        :content="about.content"
+        :title="about.title"
+        :button="about.button"
+        :backgroundImage="about.backgroundImage"/>
       <Portfolio class="swiper-slide" id="portfolio" :projects="projects" :categories="categories" @show="showProject"/>
-      <Contact class="swiper-slide" :content="contact.content" :title="contact.title"/>
+      <Contact class="swiper-slide"
+        :content="contact.content"
+        :title="contact.title"
+        :button="contact.button"
+        :backgroundImage="contact.backgroundImage"/>
     </div>
     <nav>
       <ul class="menu"></ul>

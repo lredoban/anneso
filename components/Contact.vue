@@ -1,5 +1,5 @@
 <template>
-  <section id="contact" class="container">
+  <section id="contact" class="container" :style="{'background-image': `url(${backgroundImage})`}">
     <div class="wrapper">
       <h2>{{ title }}</h2>
       <div v-html="content"></div>
@@ -19,7 +19,7 @@
         <!--<pre style='text-align:left'>name: {{ $v.name }}</pre>-->
         <button class="btn" type="submit" value="Submit" v-bind:disabled="$v.$invalid" v-if="!success">
           <span class="btn_hover"></span>
-          <span>Envoyer</span>
+          <span>{{ button }}</span>
         </button>
       </form>
       <div class="congratulation" v-if="success">
@@ -36,7 +36,7 @@
   import axios from 'axios'
 
   export default{
-    props: ['title', 'content'],
+    props: ['title', 'content', 'button', 'backgroundImage'],
     data: () => {
       return {
         name: '',
@@ -83,8 +83,8 @@
 
   #contact
     flex-direction: column
+    background-size: 0
     @media #{$medium-up}
-      background: url('~assets/bg-contact.png')
       background-repeat: no-repeat
       background-size: 50vh
       background-position: bottom right

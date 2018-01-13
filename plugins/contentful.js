@@ -18,8 +18,13 @@ export async function getPages () {
   const ret = {}
 
   for (let page of pageNames) {
-    let raw = await client.getEntry(pages[page])
-    ret[page] = { title: raw.fields.title, content: marked(raw.fields.content, options) }
+    let raw = await client.getEntries({'sys.id': pages[page]})
+
+    ret[page] = { title: raw.items[0].fields.title,
+      content: marked(raw.items[0].fields.content, options),
+      button: raw.items[0].fields.button,
+      backgroundImage: raw.items[0].fields.backgroundImage.fields.file.url
+    }
   }
   return ret
 }

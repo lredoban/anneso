@@ -1,10 +1,10 @@
 <template>
-  <section id="about" class="container">
+  <section id="about" class="container" :style="{'background-image': `url(${backgroundImage})`}">
       <h2>{{ title }}</h2>
       <div class="about-text" v-html="content"></div>
       <button class="btn" @click="jump" type="button">
         <span class="btn_hover"></span>
-        <span>Me contacter</span>
+        <span>{{ button }}</span>
       </button>
       <Infotip :mobile-hide='true'>Portfolio</Infotip>
   </section>
@@ -14,7 +14,7 @@
   import Infotip from '~components/Infotip.vue'
 
   export default{
-    props: ['title', 'content'],
+    props: ['title', 'content', 'button', 'backgroundImage'],
     components: {
       Infotip
     },
@@ -31,10 +31,8 @@
 
   #about
     flex-direction: column
-
-  @media #{$medium-up}
-    #about
-      background: url('~assets/bg-about.png')
+    background-size: 0
+    @media #{$medium-up}
       background-repeat: no-repeat
       background-size: 50vh
       background-position: bottom left
