@@ -38,7 +38,7 @@
       background-position: bottom left
   
   .about-text
-    margin: 2em 0
+    margin: 0
     @media #{$medium-up}
-    margin: 3em 0
+      margin: 3em 0
 </style>

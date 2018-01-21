@@ -101,7 +101,9 @@
   input, textarea
     margin-bottom: 1em
     font-family: "Viga"
-    padding: 1em
+    padding: .3em
+    @media #{$small-up}
+      padding: 1em
     border-radius: 1em
     border: 1px solid $white
     background-color: rgba(124, 170, 254, .2)

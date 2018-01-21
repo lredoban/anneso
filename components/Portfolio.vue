@@ -1,6 +1,6 @@
 <template>
   <section class="fancy">
-    <div class="container">
+    <div class="container about-top">
       <h2>Portfolio</h2>
       <ul class="filter">
         <li :class="{current: isCurrent('tout')}" @click="setCurrent('tout')"><span>Tout</span></li>
@@ -9,7 +9,7 @@
     </div>
     <div v-swiper:mySwiper="swiperOption">
       <div class="swiper-wrapper">
-        <div class="swiper-slide" :key="project.title" v-for="project in filteredProjects">
+        <div class="swiper-slide" :key="project.title" v-for="(project, i) in filteredProjects">
           <div class="item" @click="handleClick(project, $event)">
             <img :src="project.featuredImage" :alt="project.title">
             <div class="overlay">
@@ -111,7 +111,9 @@
     .filter
       margin-bottom: 2em
       padding-left: 0
+      font-size: 0.9em
       @media #{$small-up}
+        font-size: 1em
         padding-left: 2em
       li
         list-style: none
@@ -138,11 +140,10 @@
       display: flex
       flex-wrap: wrap
       justify-content: center
-      flex-direction: column
+      flex-direction: row
       margin-top: 1em
     @media #{$small-up}
       .container
-        flex-direction: row
         align-items: center
       .filter
         margin-bottom: 0
@@ -150,11 +151,13 @@
     .swiper-container
       width: 100%
       @media #{$small-up}
-        width: 80%
+        padding: 13px
+        width: 90%
     .swiper-wrapper
       display: flex
     .swiper-slide
       padding-top: 20px
+      margin-top: 30px
     .item
       position: relative
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
@@ -177,6 +180,8 @@
         width: 100%
         transform: translate(-50%, -50%)
         transition: opacity .65s ease
+        > * 
+          line-height: 1em
       &::after
         content: ""
         opacity: 1
@@ -213,6 +218,11 @@
       left: 66%
       transform: rotate(180deg)
     .swiper-slide-active
+      padding-top: 3%
+      transform: translateY(6%)
+      @media #{$small-up}
+        padding-top: 20px
+        transform: translateY(0)
       .item
         transform: scale(1.3)
         @media #{$small-up}
@@ -222,8 +232,10 @@
       .item_informations
         opacity: 1
         transition: opacity 0.5s ease 0.1s
+        > *
+          line-height: 1em
     .item_informations
-      margin-top: 2em
+      margin-top: 2.5em
       transition: opacity 0.3s ease
       opacity: 0
       @media #{$small-up}

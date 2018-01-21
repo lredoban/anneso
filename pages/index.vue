@@ -122,11 +122,16 @@ export default {
     display: flex
     flex-direction: column
     align-items: flex-end
+    transform: translateY(-36px)
+    @media #{$small-up}
+      transform: translateY(0)
     li.swiper-pagination-bullet
       list-style-type: none
       text-align: right
       height: 0px
-      width: 2em
+      width: 1.1em
+      @media #{$small-up}
+        width: 1.9em
       margin: .5em 0
       border-top: 2px solid $purple
       border-radius: 0
@@ -140,22 +145,25 @@ export default {
         opacity: 0
         transition: opacity .4s ease-in
       &-active
-        width: 3em
-        margin-left: -1em
-  .menu:hover
-    li.swiper-pagination-bullet
-      height: 1.4em
-      width: 100%
-      padding-right: 5px
-      transition: width .4s ease-in-out, height .4s ease-in-out .2s
-      span
-        opacity: 1
-        transition: opacity .4s ease-in .4s
-      &-active
-        color: $purple
-        margin-left: 0
-      &:hover
-        color: $purple
+        width: 2em
+        @media #{$small-up}
+          width: 3em
+          margin-left: -1em
+  @media #{$small-up}
+    .menu:hover
+      li.swiper-pagination-bullet
+        height: 1.4em
+        width: 100%
+        padding-right: 5px
+        transition: width .4s ease-in-out, height .4s ease-in-out .2s
+        span
+          opacity: 1
+          transition: opacity .4s ease-in .4s
+        &-active
+          color: $purple
+          margin-left: 0
+        &:hover
+          color: $purple
   .v--modal-top-right
     z-index: 1
   .v--modal-overlay .v--modal-box
