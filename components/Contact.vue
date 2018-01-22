@@ -59,11 +59,9 @@
     },
     methods: {
       submit: function () {
-        console.info('Nas - The Message', 'https://formspree.io/maitrejedi@lovasoa.fr')
-        console.log(this.$data)
         axios({
           method: 'post',
-          url: 'https://formspree.io/maitrejedi@lovasoa.fr',
+          url: 'https://formspree.io/annesophie.rimasson@gmail.com',
           data: {...this.$data},
           headers: {Accept: 'application/json'}
         })
