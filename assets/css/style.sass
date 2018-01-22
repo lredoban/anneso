@@ -21,10 +21,6 @@ body
   color: $primary
   height: 100%
 section
-  display: flex
-  justify-content: center
-  align-items: center
-  text-align: center
   &.fancy
     background: linear-gradient(45deg, $light-blue, $blue)
     color: $purple
@@ -52,7 +48,7 @@ strong
   border: none
   font-family: Viga
   font-size: inherit
-  margin: 1.5em
+  margin: 0
   background-color: $pink
   z-index: 1
   span
@@ -82,7 +78,8 @@ strong
   &:not([disabled]):hover .btn_hover
     transition: all 0.5s ease-out 0s
     transform: translateX(0%)
-
+  @media #{$small-up}
+    margin-bottom: 1.5em
 
 input:focus,
 select:focus,

@@ -1,6 +1,6 @@
 <template>
   <section class="fancy">
-    <div id="welcome" class="container">
+    <div class="welcome container">
       <h1 class="hidden">Welcome</h1>
       <img src="~assets/welcome.png"
         srcset="
@@ -66,7 +66,7 @@
 
 <style lang="sass">
 @import "~assets/css/helpers"
-#welcome img
+.welcome img
   width: 90vw
   max-width: 640px
   margin: 0 auto
@@ -81,6 +81,11 @@
   transform: rotate(-90deg)
   margin-left: 1em
   opacity: .5
+  text-align: left
+  @media #{$small-up}
+    text-align: center
   span:last-child
-    margin-left: 7em
+    margin-left: 1em
+    @media #{$small-up}
+      margin-left: 7em
 </style>

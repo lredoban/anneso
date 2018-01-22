@@ -1,5 +1,5 @@
 <template>
-  <section id="contact" class="container" :style="{'background-image': `url(${backgroundImage})`}">
+  <section class="contact container" :style="{'background-image': `url(${backgroundImage})`}">
     <div class="wrapper">
       <h2>{{ title }}</h2>
       <div v-html="content"></div>
@@ -81,7 +81,7 @@
 <style lang="sass">
   @import "~assets/css/helpers"
 
-  #contact
+  .contact
     flex-direction: column
     background-size: 0
     @media #{$medium-up}
@@ -90,8 +90,13 @@
       background-position: bottom right
     .wrapper
       max-width: 720px
+      margin: 0 auto
     p
       margin: auto
+    h2
+      margin-bottom: 0
+      @media #{$small-up}
+        margin-bottom: 1rem
 
   form
     padding: 1em
@@ -101,7 +106,7 @@
   input, textarea
     margin-bottom: 1em
     font-family: "Viga"
-    padding: .3em
+    padding: .5em
     @media #{$small-up}
       padding: 1em
     border-radius: 1em

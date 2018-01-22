@@ -1,6 +1,6 @@
 <template>
   <section class="fancy">
-    <div class="container about-top">
+    <div class="container">
       <h2>Portfolio</h2>
       <ul class="filter">
         <li :class="{current: isCurrent('tout')}" @click="setCurrent('tout')"><span>Tout</span></li>
@@ -109,7 +109,7 @@
     h2
       margin-bottom: 0
     .filter
-      margin-bottom: 2em
+      margin-bottom: 0
       padding-left: 0
       font-size: 0.9em
       @media #{$small-up}
@@ -141,12 +141,12 @@
       flex-wrap: wrap
       justify-content: center
       flex-direction: row
-      margin-top: 1em
+      margin-top: 0
     @media #{$small-up}
       .container
         align-items: center
+        margin-top: 1em
       .filter
-        margin-bottom: 0
         padding-top: 1.5em
     .swiper-container
       width: 100%
@@ -241,7 +241,9 @@
       @media #{$small-up}
         display: none
     .swiper-pagination
-      margin-bottom: 1em
+      margin-bottom: 0
+      @media #{$small-up}
+        margin-bottom: 1em
       position: relative
     .swiper-button-prev, .swiper-button-next
       display: none

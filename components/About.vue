@@ -1,5 +1,5 @@
 <template>
-  <section id="about" class="container" :style="{'background-image': `url(${backgroundImage})`}">
+  <section class="about container" :style="{'background-image': `url(${backgroundImage})`}">
       <h2>{{ title }}</h2>
       <div class="about-text" v-html="content"></div>
       <button class="btn" @click="jump" type="button">
@@ -29,16 +29,23 @@
 <style lang="sass">
   @import "~assets/css/helpers"
 
-  #about
+  .about
     flex-direction: column
     background-size: 0
     @media #{$medium-up}
       background-repeat: no-repeat
       background-size: 50vh
       background-position: bottom left
-  
+
   .about-text
     margin: 0
     @media #{$medium-up}
       margin: 3em 0
+    > *
+      margin: 0 auto
+
+  p
+    line-height: 1.5em
+    @media #{$small-up}
+      line-height: 1.8em
 </style>

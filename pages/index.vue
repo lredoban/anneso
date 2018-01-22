@@ -1,26 +1,35 @@
 <template>
-  <main v-swiper:mySwiper="swiperOption">
-    <div class="swiper-wrapper">
-      <Welcome class="swiper-slide"/>
-      <About class="swiper-slide" 
-        @jump-to-contact="slideTo(sections.length - 1)"
+  <main>
+    <transition name="fade">
+      <div id="loader" v-if="!loaded">
+        <Spinner/>
+      </div>
+    </transition>
+    <div id="fullpage">
+      <Welcome class="section"/>
+      <About class="section" 
+        @jump-to-contact="slideTo('contact')"
         :content="about.content"
         :title="about.title"
         :button="about.button"
         :backgroundImage="about.backgroundImage"/>
-      <Portfolio class="swiper-slide" id="portfolio" :projects="projects" :categories="categories" @show="showProject"/>
-      <Contact class="swiper-slide"
+      <Portfolio class="section" :projects="projects" :categories="categories" @show="showProject"/>
+      <Contact class="section"
         :content="contact.content"
         :title="contact.title"
         :button="contact.button"
         :backgroundImage="contact.backgroundImage"/>
     </div>
-    <nav>
-      <ul class="menu"></ul>
+    <nav v-show="loaded">
+      <ul class="menu">
+        <li data-menuanchor="welcome" @click="slideTo('welcome')"><span>welcome</span></li>
+        <li data-menuanchor="about" @click="slideTo('about')"><span>about</span></li>
+        <li data-menuanchor="portfolio" @click="slideTo('portfolio')"><span>portfolio</span></li>
+        <li data-menuanchor="contact" @click="slideTo('contact')"><span>contact</span></li>
+      </ul>
     </nav>
     <modal name="project"
       :adaptive="true"
-      @opened="beforeOpen"
       width="100%" height="100%">
       <div slot="top-right">
         <button class="close" @click="$modal.hide('project')">
@@ -40,6 +49,7 @@ import Welcome from '~components/Welcome.vue'
 import About from '~components/About.vue'
 import Portfolio from '~components/Portfolio.vue'
 import Contact from '~components/Contact.vue'
+import Spinner from '~components/Spinner.vue'
 import { getPages, getCategories, getProjects } from '~plugins/contentful.js'
 
 const _sections = [
@@ -64,40 +74,42 @@ export default {
       current: 0,
       sections: _sections,
       project: '',
-      swiperOption: {
-        slidesPerView: 1,
-        pagination: '.menu',
-        paginationClickable: true,
-        direction: 'vertical',
-        mousewheelControl: true,
-        speed: 700,
-        paginationBulletRender: (swiper, index, className) =>
-          `<li class="${className}"><span>${_sections[index].slice(1, _sections[index].length)}</span></li>`
-      }
+      loaded: false
     }
   },
   components: {
     Welcome,
     About,
     Portfolio,
-    Contact
+    Contact,
+    Spinner
+  },
+  mounted: function () {
+    const _ = this
+    $(document).ready(function () { // eslint-disable-line no-undef
+      $('#fullpage').fullpage({ // eslint-disable-line no-undef
+        anchors: [
+          'welcome',
+          'about',
+          'portfolio',
+          'contact'
+        ],
+        normalScrollElements: '.project',
+        menu: '.menu',
+        afterRender: () => {
+          console.warn('loaded', this.loaded)
+          _.loaded = true
+        }
+      })
+    })
   },
   methods: {
-    slideTo: function (index) {
-      this.mySwiper.slideTo(index)
+    slideTo: function (section) {
+      $.fn.fullpage.moveTo(section) // eslint-disable-line no-undef
     },
     showProject: function (project) {
       this.project = project
       this.$modal.show('project')
-    },
-    beforeOpen: function (event) {
-      if (event.state) {
-        this.mySwiper.disableMousewheelControl()
-        this.mySwiper.disableTouchControl()
-      } else {
-        this.mySwiper.enableMousewheelControl()
-        this.mySwiper.enableTouchControl()
-      }
     }
   }
 }
@@ -106,6 +118,23 @@ export default {
 <style lang='sass'>
   @import ~assets/css/helpers
   @import ~assets/css/project
+
+  #loader
+    position: absolute
+    width: 100vw
+    height: 100vh
+    background: white
+    z-index: 4242
+    display: grid
+    justify-items: center
+    align-items: center
+    .spinner
+      height: 50px
+      width: 50px
+      border-radius: 100%
+      background: transparent
+      border-top: 4px solid mistypink
+      border-right: 4px solid mistypink
 
   main.swiper-container
     width: 100%
@@ -125,7 +154,7 @@ export default {
     transform: translateY(-36px)
     @media #{$small-up}
       transform: translateY(0)
-    li.swiper-pagination-bullet
+    li
       list-style-type: none
       text-align: right
       height: 0px
@@ -144,14 +173,14 @@ export default {
         display: inline
         opacity: 0
         transition: opacity .4s ease-in
-      &-active
+      &.active
         width: 2em
         @media #{$small-up}
           width: 3em
           margin-left: -1em
   @media #{$small-up}
     .menu:hover
-      li.swiper-pagination-bullet
+      li
         height: 1.4em
         width: 100%
         padding-right: 5px
@@ -159,7 +188,7 @@ export default {
         span
           opacity: 1
           transition: opacity .4s ease-in .4s
-        &-active
+        &.active
           color: $purple
           margin-left: 0
         &:hover
@@ -170,4 +199,8 @@ export default {
     overflow: auto !important
   .v--modal
     background: rgba(255,255,255,0.92)
+  .fade-enter-active, .fade-leave-active
+    transition: opacity .5s
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+    opacity: 0
 </style>

@@ -17,8 +17,13 @@ module.exports = {
       { property: 'og:image', content: 'img/welcome640.png' },
       { name: 'theme-color', content: '#0978f5' }
     ],
+    script: [
+      { src: 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js', type: 'text/javascript' },
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.min.js', type: 'text/javascript' }
+    ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
+      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.min.css' }
     ],
     htmlAttrs: {
       lang: 'fr'
