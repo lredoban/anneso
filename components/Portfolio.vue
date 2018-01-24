@@ -227,10 +227,10 @@
         transform: scale(1.3)
         @media #{$small-up}
           transform: none
+          &:hover::after
+            opacity: 1
       .item::after
         opacity: 0
-        @media #{$small-up}
-          opacity: 1
       .item_informations
         opacity: 1
         transition: opacity 0.5s ease 0.1s
