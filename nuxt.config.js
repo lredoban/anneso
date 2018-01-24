@@ -7,13 +7,13 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1' },
-      { hid: 'description', name: 'description', content: 'Anne-Sophie Rimasson Portfolio' },
+      { hid: 'description', name: 'description', content: 'Anne-Sophie Rimasson' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
-      { property: 'og:title', content: 'Anne-Sophie Rimasson Portfolio' },
+      { property: 'og:title', content: 'Anne-Sophie Rimasson' },
       { property: 'og:site_name', content: 'Anne-Sophie' },
-      { property: 'og:url', content: 'https://annefo.surge.sh' },
+      { property: 'og:url', content: 'https://heyoo.fr' },
       { property: 'og:type', content: 'website' },
-      { property: 'og:description', content: 'Anne-Sophie Rimasson Portfolio' },
+      { property: 'og:description', content: 'Anne-Sophie Rimasson' },
       { property: 'og:image', content: 'img/welcome640.png' },
       { name: 'theme-color', content: '#0978f5' }
     ],
