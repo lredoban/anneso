@@ -54,6 +54,11 @@ module.exports = {
       'swiper'
     ]
   },
+  modules: [
+    ['@nuxtjs/google-analytics', {
+      id: process.env.HEYOO_GA
+    }]
+  ],
   plugins: [
     { src: '~plugins/swiper.js', ssr: false },
     '~plugins/vue-js-modal',

@@ -5,6 +5,7 @@
   "author": "Lovasoa <maitrejedi@lovasoa.fr>",
   "private": true,
   "dependencies": {
+    "@nuxtjs/google-analytics": "^2.0.2",
     "axios": "^0.16.2",
     "contentful": "^4.5.0",
     "lodash": "^4.17.4",

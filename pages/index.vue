@@ -96,10 +96,7 @@ export default {
         ],
         normalScrollElements: '.project',
         menu: '.menu',
-        afterRender: () => {
-          console.warn('loaded', this.loaded)
-          _.loaded = true
-        }
+        afterRender: () => { _.loaded = true }
       })
     })
   },
