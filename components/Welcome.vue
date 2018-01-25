@@ -1,7 +1,7 @@
 <template>
   <section class="fancy">
     <div class="welcome container">
-      <h1 class="hidden">Welcome</h1>
+      <h1>Test Dev Branch</h1>
       <img src="~assets/welcome.png"
         srcset="
           /img/welcome288.png 288w,
