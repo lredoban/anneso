@@ -14,7 +14,7 @@
     </div>
     <Infotip/>
     <div class="copyright">
-      <span>Anne-Fofie Rimasson, Graphiste web et print</span>
+      <span>Anne-Sophie Rimasson, Graphiste web et print</span>
       <span>copyright - {{new Date().getFullYear()}}</span>
     </div>
   </section>
