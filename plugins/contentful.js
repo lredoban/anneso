@@ -11,7 +11,7 @@ const pages = {
   contact: '2ZHHaG0AP6owwW6mYcC6Am'
 }
 const categoriesId = '5KMiN6YPvi42icqAUQMCQe'
-const options = { gfm: true, tables: true, sanitize: true }
+const options = { gfm: true, tables: true, sanitize: false }
 
 export async function getPages () {
   const pageNames = Object.keys(pages)
@@ -21,6 +21,7 @@ export async function getPages () {
 
     ret[page] = { title: raw.items[0].fields.title,
       content: marked(raw.items[0].fields.content, options),
+      message: raw.items[0].fields.message ? marked(raw.items[0].fields.message, options) : '',
       button: raw.items[0].fields.button,
       backgroundImage: raw.items[0].fields.backgroundImage.fields ? raw.items[0].fields.backgroundImage.fields.file.url : ''
     }

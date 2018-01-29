@@ -16,17 +16,12 @@
           @blur="$v.message.$touch()"
           :class="{'error': $v.message.$error}"
         ></textarea>
-        <!--<pre style='text-align:left'>name: {{ $v.name }}</pre>-->
         <button class="btn" type="submit" value="Submit" v-bind:disabled="$v.$invalid" v-if="!success">
           <span class="btn_hover"></span>
           <span>{{ button }}</span>
         </button>
       </form>
-      <div class="congratulation" v-if="success">
-        Merci {{name}} votre message vient d'être envoyé ! <br>
-        Anne-Sophie vous répondra au plus vite sur {{email}} . <br>
-        bisous doux 😘 !!!
-      </div>
+      <div class="congratulation" v-if="success" v-html="parsedResponse"></div>
     </div>
   </section>
 </template>
@@ -36,7 +31,7 @@
   import axios from 'axios'
 
   export default{
-    props: ['title', 'content', 'button', 'backgroundImage'],
+    props: ['title', 'content', 'button', 'backgroundImage', 'response'],
     data: () => {
       return {
         name: '',
@@ -71,6 +66,11 @@
           this.message = ''
         }.bind(this))
         .catch(err => console.warn('Shiiiit', err))
+      }
+    },
+    computed: {
+      parsedResponse () {
+        return this.response.replace('{{name}}', this.name).replace('{{email}}', this.email)
       }
     }
   }

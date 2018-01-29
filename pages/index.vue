@@ -18,6 +18,7 @@
         :content="contact.content"
         :title="contact.title"
         :button="contact.button"
+        :response="contact.message"
         :backgroundImage="contact.backgroundImage"/>
     </div>
     <nav v-show="loaded">
