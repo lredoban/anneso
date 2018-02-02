@@ -31,9 +31,10 @@
 
   .about
     flex-direction: column
-    background-size: 0
+    background-position: 99999px 99999px
+    background-repeat: no-repeat
     @media #{$medium-up}
-      background-repeat: no-repeat
+      background-position: 0 0
       background-size: 50vh
       background-position: bottom left
 
