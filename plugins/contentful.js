@@ -2,8 +2,8 @@ import {createClient} from 'contentful'
 import marked from 'marked'
 
 const client = createClient({
-  space: 'wz0vjkm4y9pe',
-  accessToken: 'd7dadf45b2eb090c3279d4f74f3f098295f385c15582b7caa97906d7b69f8d37'
+  space: process.env.space,
+  accessToken: process.env.accessToken
 })
 
 const pages = {
