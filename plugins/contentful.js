@@ -2,8 +2,8 @@ import {createClient} from 'contentful'
 import marked from 'marked'
 
 const client = createClient({
-  space: 'wz0vjkm4y9pe',
-  accessToken: 'd7dadf45b2eb090c3279d4f74f3f098295f385c15582b7caa97906d7b69f8d37'
+  space: process.env.space,
+  accessToken: process.env.accessToken
 })
 
 const pages = {
@@ -11,7 +11,7 @@ const pages = {
   contact: '2ZHHaG0AP6owwW6mYcC6Am'
 }
 const categoriesId = '5KMiN6YPvi42icqAUQMCQe'
-const options = { gfm: true, tables: true, sanitize: true }
+const options = { gfm: true, tables: true, sanitize: false }
 
 export async function getPages () {
   const pageNames = Object.keys(pages)
@@ -21,6 +21,7 @@ export async function getPages () {
 
     ret[page] = { title: raw.items[0].fields.title,
       content: marked(raw.items[0].fields.content, options),
+      message: raw.items[0].fields.message ? marked(raw.items[0].fields.message, options) : '',
       button: raw.items[0].fields.button,
       backgroundImage: raw.items[0].fields.backgroundImage.fields ? raw.items[0].fields.backgroundImage.fields.file.url : ''
     }

@@ -66,5 +66,9 @@ module.exports = {
   ],
   css: [
     'swiper/dist/css/swiper.css'
-  ]
+  ],
+  env: {
+    space: process.env.HEYOO_SPACE,
+    accessToken: process.env.HEYOO_TOKEN
+  }
 }
