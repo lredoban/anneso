@@ -14,7 +14,7 @@ module.exports = {
       { property: 'og:url', content: 'https://heyoo.fr' },
       { property: 'og:type', content: 'website' },
       { property: 'og:description', content: 'Anne-Sophie Rimasson' },
-      { property: 'og:image', content: 'img/welcome640.png' },
+      { property: 'og:image', content: 'img/meta.png' },
       { name: 'theme-color', content: '#0978f5' }
     ],
     script: [
