@@ -4,12 +4,12 @@
       <h2>Portfolio</h2>
       <ul class="filter">
         <li :class="{current: isCurrent('tout')}" @click="setCurrent('tout')"><span>Tout</span></li>
-        <li :class="{current: isCurrent(cat)}" v-for="cat in categories" @click="setCurrent(cat)"><span>{{ cat }}</span></li>
+        <li :class="{current: isCurrent(cat)}" v-for="(cat, i) in categories" :key="i" @click="setCurrent(cat)"><span>{{ cat }}</span></li>
       </ul>
     </div>
     <div v-swiper:mySwiper="swiperOption">
       <div class="swiper-wrapper">
-        <div class="swiper-slide" :key="project.title" v-for="(project, i) in filteredProjects">
+        <div class="swiper-slide" :key="project.title" v-for="project in filteredProjects">
           <div class="item" @click="handleClick(project, $event)">
             <img :src="project.featuredImage" :alt="project.title">
             <div class="overlay">
@@ -83,6 +83,10 @@
       },
       handleClick: function (project, event) {
         if (document.body.clientWidth >= 640) {
+          this.$ga.page({
+            page: '/project/' + this.handleize(project.title),
+            title: project.title
+          })
           return this.$emit('show', project)
         }
 
@@ -95,6 +99,9 @@
         } else {
           this.$emit('show', project)
         }
+      },
+      handleize: function (str) {
+        return str.toLowerCase().replace(/[^\w\u00C0-\u024f]+/g, '-').replace(/^-+|-+$/g, '')
       }
     }
   }

@@ -59,7 +59,7 @@ module.exports = {
     ['@nuxtjs/google-analytics', {
       id: process.env.HEYOO_GA,
       autoTracking: {
-        page: false
+        skipSamePath: true
       }
     }]
   ],
