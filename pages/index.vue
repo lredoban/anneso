@@ -194,7 +194,8 @@ export default {
   .v--modal-top-right
     z-index: 1
   .v--modal-overlay .v--modal-box
-    overflow: auto !important
+    overflow-y: scroll !important
+    -webkit-overflow-scrolling: touch
   .v--modal
     background: rgba(255,255,255,0.92)
   .fade-enter-active, .fade-leave-active

@@ -13,8 +13,9 @@ module.exports = {
       { property: 'og:site_name', content: 'Anne-Sophie' },
       { property: 'og:url', content: 'https://heyoo.fr' },
       { property: 'og:type', content: 'website' },
-      { property: 'og:description', content: 'Anne-Sophie Rimasson' },
-      { property: 'og:image', content: 'img/welcome640.png' },
+      { property: 'og:description', content: 'Anne-Sophie, 25 ans, Graphic designer depuis 2013.' },
+      { property: 'og:image', content: 'https://heyoo.fr/img/meta.png' },
+      { property: 'twitter:image', content: 'https://heyoo.fr/img/meta.png' },
       { name: 'theme-color', content: '#0978f5' }
     ],
     script: [
@@ -56,7 +57,10 @@ module.exports = {
   },
   modules: [
     ['@nuxtjs/google-analytics', {
-      id: process.env.HEYOO_GA
+      id: process.env.HEYOO_GA,
+      autoTracking: {
+        skipSamePath: true
+      }
     }]
   ],
   plugins: [
