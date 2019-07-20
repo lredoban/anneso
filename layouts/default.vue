@@ -1,7 +1,7 @@
 <template>
-  <nuxt/>
+  <nuxt />
 </template>
 
 <style lang="sass">
-  @import ~assets/css/style
+@import '~assets/css/style'
 </style>

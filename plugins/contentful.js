@@ -1,4 +1,4 @@
-import {createClient} from 'contentful'
+import { createClient } from 'contentful'
 import marked from 'marked'
 
 const client = createClient({
@@ -13,47 +13,52 @@ const pages = {
 const categoriesId = '5KMiN6YPvi42icqAUQMCQe'
 const options = { gfm: true, tables: true, sanitize: false }
 
-export async function getPages () {
+export async function getPages() {
   const pageNames = Object.keys(pages)
   const ret = {}
-  for (let page of pageNames) {
-    let raw = await client.getEntries({'sys.id': pages[page]})
+  for (const page of pageNames) {
+    const raw = await client.getEntries({ 'sys.id': pages[page] })
 
-    ret[page] = { title: raw.items[0].fields.title,
+    ret[page] = {
+      title: raw.items[0].fields.title,
       content: marked(raw.items[0].fields.content, options),
-      message: raw.items[0].fields.message ? marked(raw.items[0].fields.message, options) : '',
+      message: raw.items[0].fields.message
+        ? marked(raw.items[0].fields.message, options)
+        : '',
       button: raw.items[0].fields.button,
-      backgroundImage: raw.items[0].fields.backgroundImage.fields ? raw.items[0].fields.backgroundImage.fields.file.url : ''
+      backgroundImage: raw.items[0].fields.backgroundImage.fields
+        ? raw.items[0].fields.backgroundImage.fields.file.url
+        : ''
     }
   }
   return ret
 }
 
-export async function getCategories () {
-  let categories = await client.getEntries(
-    {
-      'sys.contentType.sys.id': categoriesId,
-      order: 'fields.order',
-      content_type: categoriesId
-    }
-  )
+export async function getCategories() {
+  const categories = await client.getEntries({
+    'sys.contentType.sys.id': categoriesId,
+    order: 'fields.order',
+    content_type: categoriesId
+  })
   return categories.items.map(i => i.fields.title)
 }
 
-export async function getProjects () {
-  let projects = await client.getEntries(
-    {
-      'sys.contentType.sys.id': 'projects',
-      order: 'fields.order',
-      content_type: 'projects'
-    }
-  )
+export async function getProjects() {
+  const projects = await client.getEntries({
+    'sys.contentType.sys.id': 'projects',
+    order: 'fields.order',
+    content_type: 'projects'
+  })
   return projects.items.map(i => {
     return {
       content: marked(i.fields.content, options),
       title: i.fields.title,
-      featuredImage: i.fields.featuredImage.fields ? i.fields.featuredImage.fields.file.url : 'https://source.unsplash.com/random',
-      categories: i.fields.categories.map(c => c.fields ? c.fields.title : false).filter(c => c)
+      featuredImage: i.fields.featuredImage.fields
+        ? i.fields.featuredImage.fields.file.url
+        : 'https://source.unsplash.com/random',
+      categories: i.fields.categories
+        .map(c => (c.fields ? c.fields.title : false))
+        .filter(c => c)
     }
   })
 }
