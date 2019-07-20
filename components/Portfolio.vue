@@ -53,10 +53,6 @@ export default {
         slidesPerView: 5,
         slidesPerGroup: 5,
         slidesPerColumn: 2,
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
         spaceBetween: 30,
         breakpoints: {
           768: {
@@ -74,6 +70,15 @@ export default {
             slidesPerColumn: 1,
             centeredSlides: true
           }
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          type: 'bullets',
+          clickable: true
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
         }
       }
     }

@@ -40,7 +40,7 @@ export async function getCategories() {
     order: 'fields.order',
     content_type: categoriesId
   })
-  return categories.items.map(i => i.fields.titlev)
+  return categories.items.map(i => i.fields.title)
 }
 
 export async function getProjects() {
