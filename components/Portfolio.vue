@@ -154,21 +154,22 @@ export default {
       list-style: none
       display: inline-block
       text-align: left
-      margin-left: 0.3em
       text-transform: capitalize
       cursor: pointer
       span
         transition: color 0.4s ease
+        padding: 2px 4px
+        border: 1px solid $white
       &::before
-        content: "/"
-        margin-right: 0.3em
+        color: $secondary
+        content: "\2022"
+        margin: 0 0.7em
       &:first-child::before
         content: none
       &.current span
-        color: $pink
-        border-bottom: 2px solid $pink
-      &:hover span
-        color: $pink
+        background-color: $bg-pink
+        padding: 2px 4px
+        border: 1px solid #e8e8e8
 
   .container
     width: 100%
