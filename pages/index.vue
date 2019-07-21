@@ -12,7 +12,6 @@
         :content="about.content"
         :title="about.title"
         :button="about.button"
-        :background-image="about.backgroundImage"
         @jump-to-contact="slideTo('contact')"
       />
       <Portfolio

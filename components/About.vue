@@ -1,8 +1,5 @@
 <template>
-  <section
-    class="about container"
-    :style="{ 'background-image': `url(${backgroundImage})` }"
-  >
+  <section class="about container">
     <h2>
       {{ title }}
     </h2>
@@ -24,7 +21,7 @@ export default {
   components: {
     Infotip
   },
-  props: ['title', 'content', 'button', 'backgroundImage'],
+  props: ['title', 'content', 'button'],
   methods: {
     jump: function() {
       this.$emit('jump-to-contact')
@@ -38,12 +35,6 @@ export default {
 
 .about
   flex-direction: column
-  background-position: 99999px 99999px
-  background-repeat: no-repeat
-  @media #{$medium-up}
-    background-position: 0 0
-    background-size: 50vh
-    background-position: bottom left
   .btn
     margin-top: 2rem
   h2
