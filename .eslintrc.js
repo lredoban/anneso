@@ -18,7 +18,7 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'warning' : 'off',
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'vue/html-closing-bracket-newline': 'off',
     'vue/html-self-closing': 'off',
