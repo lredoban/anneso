@@ -19,6 +19,8 @@ body
   text-align: center
   font-family: $raleway
   font-weight: 700
+  line-height: 2.24
+  letter-spacing: 0.2px
   color: $primary
   height: 100%
 section
@@ -29,9 +31,9 @@ p
   max-width: 640px
 
 strong
-  font-weight: 400
-  background-color: $secondary
-  padding: 0 2px
+  background-color: $bg-pink
+  padding: 2px 4px
+  border: 1px solid #e8e8e8
 
 .hidden
   display: none
@@ -41,7 +43,7 @@ strong
   position: relative
   color: $white
   cursor: pointer
-  padding: 1em 4em
+  padding: 0.3em 4.2em
   border-radius: 4em
   text-decoration: none
   border: none
@@ -49,7 +51,7 @@ strong
   font-weight: 700
   font-size: inherit
   margin: 0
-  background-color: $pink
+  background-color: $bg-purple
   z-index: 1
   span
     position: relative
@@ -62,7 +64,7 @@ strong
       left: 0
       height: 100%
       width: 100%
-      background-color: $purple
+      background-color: $secondary-btn
       z-index: 2
       transform: translateX(calc(-100% - var(--angle-width)))
       transition: all 0.6s ease 0.15s
@@ -74,7 +76,7 @@ strong
         height: 0
         width: 0
         border-bottom: 70px solid transparent
-        border-left: var(--angle-width) solid $purple
+        border-left: var(--angle-width) solid $secondary-btn
   &:not([disabled]):hover .btn_hover
     transition: all 0.5s ease-out 0s
     transform: translateX(0%)

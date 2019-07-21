@@ -12,7 +12,7 @@
       <span>{{ button }}</span>
     </button>
     <Infotip :mobile-hide="true">
-      Portfolio
+      Projets
     </Infotip>
   </section>
 </template>
@@ -44,6 +44,10 @@ export default {
     background-position: 0 0
     background-size: 50vh
     background-position: bottom left
+  .btn
+    margin-top: 2rem
+  h2
+    font-family: $abril
 
 .about-text
   margin: 0
