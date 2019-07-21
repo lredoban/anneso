@@ -26,7 +26,6 @@
         :title="contact.title"
         :button="contact.button"
         :response="contact.message"
-        :background-image="contact.backgroundImage"
         :is-dev="isDev"
       />
     </div>

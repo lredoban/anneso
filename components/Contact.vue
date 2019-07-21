@@ -1,8 +1,5 @@
 <template>
-  <section
-    class="contact container"
-    :style="{ 'background-image': `url(${backgroundImage})` }"
-  >
+  <section class="contact container">
     <div class="wrapper">
       <h2>{{ title }}</h2>
       <div v-html="content"></div>
@@ -139,12 +136,7 @@ export default {
 
 .contact
   flex-direction: column
-  background-position: 99999px 99999px
-  background-repeat: no-repeat
-  @media #{$medium-up}
-    background-position: 0 0
-    background-size: 50vh
-    background-position: bottom right
+  background-color: $bg-pink
   .wrapper
     max-width: 720px
     margin: 0 auto
@@ -158,28 +150,27 @@ export default {
 form
   padding: 1em
   .errors
-    color: $pink
+    color: #ffbac7
 
 input, textarea
   margin-bottom: 1em
   font-family: $raleway
   font-weight: 700
   padding: .5em
-  @media #{$small-up}
-    padding: 1em
-  border-radius: 1em
-  border: 1px solid $white
-  background-color: rgba(124, 170, 254, .2)
-  color: $blue
+  border: 1px solid #e8e8e8
+  background-color: $bg-form
+  color: $primary
   width: 100%
   &.error
-    border: 1px solid $pink
+    border: 1px solid #ffbac7
 ::placeholder
-  color: $blue
+  color: $primary
   opacity: .6
 
-.btn:disabled
-  opacity: .3
+.btn
+  margin-top: 2rem
+  &:disabled
+    opacity: .3
 
 .congratulation
   color: $pink
