@@ -1,7 +1,7 @@
 <template>
   <div :class="[mobileHide ? 'mobile-hide' : '']">
     <p>
-      <slot>Scroll Down</slot>
+      <slot>Scroll down :)</slot>
     </p>
     <img src="/img/scroll-down.svg" alt="Scroll Down" />
   </div>
@@ -21,11 +21,11 @@ div
   bottom: 100px
   text-align: center
   color: $purple
-  text-transform: uppercase
   bottom: 1em
   left: 50%
   transform: translateX(-50%)
   p
+    color: $secondary
     font-size: .7em
     padding: 1em
     letter-spacing: 1px

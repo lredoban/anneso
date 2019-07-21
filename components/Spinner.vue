@@ -62,9 +62,9 @@
 }
 /* Half gradients */
 .inner:before {
-  background-image: -webkit-linear-gradient(45deg, #0978f5, #09d4ff);
-  background-image: -moz-linear-gradient(45deg, #0978f5, #09d4ff);
-  background-image: linear-gradient(45deg, #0978f5, #09d4ff);
+  background-image: -webkit-linear-gradient(45deg, #fce5ec, #ffbac7);
+  background-image: -moz-linear-gradient(45deg, #fce5ec, #ffbac7);
+  background-image: linear-gradient(45deg, #fce5ec, #ffbac7);
 }
 .inner:after {
   background: white;

@@ -162,7 +162,8 @@ form
 
 input, textarea
   margin-bottom: 1em
-  font-family: "Viga"
+  font-family: $raleway
+  font-weight: 700
   padding: .5em
   @media #{$small-up}
     padding: 1em

@@ -34,13 +34,13 @@
     <nav v-show="loaded">
       <ul class="menu">
         <li data-menuanchor="welcome" @click="slideTo('welcome')">
-          <span>welcome</span>
+          <span>Welcome</span>
         </li>
         <li data-menuanchor="about" @click="slideTo('about')">
-          <span>about</span>
+          <span>About</span>
         </li>
         <li data-menuanchor="portfolio" @click="slideTo('portfolio')">
-          <span>portfolio</span>
+          <span>Projets</span>
         </li>
         <li data-menuanchor="contact" @click="slideTo('contact')">
           <span>contact</span>
@@ -179,12 +179,12 @@ nav
     @media #{$small-up}
       width: 1.9em
     margin: .5em 0
-    border-top: 2px solid $purple
+    border-top: 2px solid $secondary
     border-radius: 0
     transition: width .4s ease-in-out .1s, height .4s ease-in-out, color .4s ease
     cursor: pointer
     background: none
-    color: $primary
+    color: $secondary
     opacity: 1
     span
       display: inline
@@ -206,10 +206,10 @@ nav
         opacity: 1
         transition: opacity .4s ease-in .4s
       &.active
-        color: $purple
+        color: $secondary
         margin-left: 0
       &:hover
-        color: $purple
+        color: darken($secondary, 3%)
 .v--modal-top-right
   z-index: 1
 .v--modal-overlay .v--modal-box
