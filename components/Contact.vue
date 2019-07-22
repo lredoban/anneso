@@ -65,10 +65,6 @@ export default {
       type: String,
       required: true
     },
-    backgroundImage: {
-      type: String,
-      required: true
-    },
     response: {
       type: String,
       required: true

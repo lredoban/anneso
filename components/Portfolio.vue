@@ -37,8 +37,12 @@
         </div>
       </div>
     </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next">
+      <img src="~assets/next-arrow.svg" alt="Next" />
+    </div>
+    <div class="swiper-button-prev">
+      <img src="~assets/prev-arrow.svg" alt="Previous" />
+    </div>
     <div class="swiper-pagination swiper-pagination-bullets"></div>
   </section>
 </template>
@@ -234,8 +238,8 @@ export default {
         background: rgba(255, 255, 255, 0.85)
     p
       margin: 0 auto
-  .swiper-slide-prev .item::before,
-  .swiper-slide-next .item::before
+  .swiper-slide-prev,
+  .swiper-slide-next
     content: ""
     z-index: 3
     position: absolute
@@ -285,54 +289,19 @@ export default {
     position: relative
   .swiper-button-prev, .swiper-button-next
     display: none
-    background: $purple
+    background: none
     height: 2.5em
     width: 2.5em
     border-radius: 2em
-    margin-top: 1em
-    &:hover
-      background: rgba($pink, 0.85)
+    margin-top: 2em
+    transition: transform .5s ease
+    outline: none
     @media #{$small-up}
       display: block
-    &::before, &::after
-      content: ""
-      position: absolute
-      background: $blue
-      top: 50%
-      left: 50%
-      width: 50%
-      height: 3px
-      border-radius: 3px
-  .swiper-button-prev
-    animation: moveLeft 2.7s infinite
-    &::before
-      transform-origin: left
-      transform: translate(-50%, calc(-50% - 1px)) rotate(45deg)
-    &::after
-      transform-origin: left
-      transform: translate(-50%, calc(-50% + 1px)) rotate(-45deg)
-  .swiper-button-next
-    animation: moveRight 2.7s infinite
-    &::before
-      transform-origin: right
-      transform: translate(-50%, calc(-50% + 1px)) rotate(45deg)
-    &::after
-      transform-origin: right
-      transform: translate(-50%, calc(-50% - 1px)) rotate(-45deg)
-@keyframes moveRight
-  0%
-    transform: translateX(0%)
-  27%
-    transform: translateX(17%)
-  100%
-    transform: translateX(0%)
-@keyframes moveLeft
-  0%
-    transform: translateX(0%)
-  27%
+  .swiper-button-prev:hover
     transform: translateX(-17%)
-  100%
-    transform: translateX(0%)
+  .swiper-button-next:hover
+    transform: translateX(17%)
 </style>
 
 <style lang="sass">
