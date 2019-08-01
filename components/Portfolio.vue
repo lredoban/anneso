@@ -4,7 +4,7 @@
       <h2>Portfolio</h2>
       <ul class="filter">
         <li :class="{ current: isCurrent('tout') }" @click="setCurrent('tout')">
-          <span>Tout</span>
+          <span :class="{ boxesbox: isCurrent('tout') }">Tout</span>
         </li>
         <li
           v-for="(cat, i) in categories"
@@ -12,14 +12,14 @@
           :class="{ current: isCurrent(cat) }"
           @click="setCurrent(cat)"
         >
-          <span>{{ cat }}</span>
+          <span :class="{ boxesbox: isCurrent(cat) }">{{ cat }}</span>
         </li>
       </ul>
     </div>
     <div v-swiper:mySwiper="swiperOption">
       <div class="swiper-wrapper">
         <div
-          v-for="project in filteredProjects"
+          v-for="project in projects"
           :key="project.title"
           class="swiper-slide"
         >
@@ -49,10 +49,25 @@
 
 <script>
 export default {
-  props: ['categories', 'projects'],
+  model: {
+    prop: 'currentCategory'
+  },
+  props: {
+    categories: {
+      type: Array,
+      required: true
+    },
+    projects: {
+      type: Array,
+      required: true
+    },
+    currentCategory: {
+      type: String,
+      required: true
+    }
+  },
   data: () => {
     return {
-      currentCategory: 'tout',
       swiperOption: {
         slidesPerView: 5,
         slidesPerGroup: 5,
@@ -87,22 +102,12 @@ export default {
       }
     }
   },
-  computed: {
-    filteredProjects: function() {
-      if (this.currentCategory === 'tout') {
-        return this.projects
-      }
-      return this.projects.filter(p =>
-        p.categories.includes(this.currentCategory)
-      )
-    }
-  },
   methods: {
     isCurrent: function(cat) {
       return cat === this.currentCategory
     },
     setCurrent: function(cat) {
-      this.currentCategory = cat
+      this.$emit('input', cat)
       this.$nextTick(function() {
         this.mySwiper.update()
       })
@@ -200,9 +205,9 @@ export default {
     margin-top: 30px
   .item
     position: relative
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
     border-radius: 50%
     cursor: pointer
+    color: $white
     &:hover
       @media #{$small-up}
         &::after, .overlay
@@ -232,14 +237,14 @@ export default {
       left: 0
       border-radius: 50%
       transition: opacity .5s ease
-      background: rgba($pink, 0.85)
+      background: rgba($secondary, 0.85)
       @media #{$small-up}
         opacity: 0
-        background: rgba(255, 255, 255, 0.85)
+        background: rgba(119,134,251, 0.9)
     p
       margin: 0 auto
-  .swiper-slide-prev,
-  .swiper-slide-next
+  .swiper-slide-prev .item::before,
+  .swiper-slide-next .item::before
     content: ""
     z-index: 3
     position: absolute
@@ -305,6 +310,16 @@ export default {
 </style>
 
 <style lang="sass">
+@import "~assets/css/helpers"
+
 .swiper-pagination-bullet
-  margin: 0 0.3em
+  margin: 0 0.7em
+  width: 14px
+  height: 14px
+  opacity: 1
+  background: transparent
+  border: 1px solid $grey
+  &-active
+    background: $primary
+    border: 1px solid $primary
 </style>

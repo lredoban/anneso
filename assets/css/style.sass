@@ -33,7 +33,24 @@ p
 strong
   background-color: $bg-pink
   padding: 2px 4px
-  border: 1px solid #e8e8e8
+  border: 1px solid $grey
+strong, .boxesbox
+  position: relative
+  &::after, &::before
+    content: ''
+    position: absolute
+    width: 5px
+    height: 5px
+    background-color: $white
+    white-space: pre-wrap
+  &::before
+    left: -3px
+    top: -3px
+    box-shadow: 0 0 0 1px $grey, 0 23px $white, 0 23px 0 1px $grey
+  &::after
+    bottom: -3px
+    box-shadow: 0 0 0 1px $grey, 0 -23px $white, 0 -23px 0 1px $grey
+    margin-left: 2px
 
 .hidden
   display: none

@@ -4,22 +4,26 @@
       <h2>{{ title }}</h2>
       <div v-html="content"></div>
       <form method="post" @submit.prevent="submit">
-        <input
-          v-model="name"
-          type="text"
-          name="name"
-          placeholder="Nom, Prénom"
-          :class="{ error: $v.name.$error }"
-          @input="$v.name.$touch()"
-        />
-        <input
-          v-model="email"
-          type="email"
-          name="_replyto"
-          placeholder="Mail"
-          :class="{ error: $v.email.$error }"
-          @input="$v.email.$touch()"
-        />
+        <div class="boxesbox">
+          <input
+            v-model="name"
+            type="text"
+            name="name"
+            placeholder="Nom, Prénom"
+            :class="{ error: $v.name.$error }"
+            @input="$v.name.$touch()"
+          />
+        </div>
+        <div class="boxesbox">
+          <input
+            v-model="email"
+            type="email"
+            name="_replyto"
+            placeholder="Mail"
+            :class="{ error: $v.email.$error }"
+            @input="$v.email.$touch()"
+          />
+        </div>
         <input type="hidden" name="_language" value="fr" />
         <input type="text" name="_gotcha" style="display:none" />
         <textarea
@@ -142,6 +146,13 @@ export default {
     margin-bottom: 0
     @media #{$small-up}
       margin-bottom: 1rem
+  .boxesbox
+    &::before
+      box-shadow: 0 0 0 1px #e8e8e8, 0 36px #fff, 0 36px 0 1px #e8e8e8
+    &::after
+      bottom: 14px
+      margin-left: -3px
+      box-shadow: 0 0 0 1px #e8e8e8, 0 -36px #fff, 0 -36px 0 1px #e8e8e8
 
 form
   padding: 1em
@@ -169,6 +180,6 @@ input, textarea
     opacity: .3
 
 .congratulation
-  color: $pink
+  color: $secondary
   font-size: 120%
 </style>

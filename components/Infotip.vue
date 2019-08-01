@@ -20,7 +20,6 @@ div
   position: absolute
   bottom: 100px
   text-align: center
-  color: $purple
   bottom: 1em
   left: 50%
   transform: translateX(-50%)

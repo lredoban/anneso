@@ -15,8 +15,9 @@
         @jump-to-contact="slideTo('contact')"
       />
       <Portfolio
+        v-model="currentCategory"
         class="section"
-        :projects="projects"
+        :projects="filteredProjects"
         :categories="categories"
         @show="showProject"
       />
@@ -52,10 +53,50 @@
         </button>
       </div>
       <div v-if="project" class="project">
-        <h3>
-          {{ project.title }} -
-          <small>{{ project.categories.join(' & ') }}</small>
-        </h3>
+        <div class="project-nav">
+          <button
+            class="prev"
+            :disabled="project.index === 0"
+            @click="showPrev"
+          >
+            <svg
+              v-if="project.index !== 0"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 35 21"
+            >
+              <path
+                d="M1.734 10.5H31.96m-7.455-8.957l8.957 8.957-8.957 8.957"
+                fill="none"
+                fill-rule="evenodd"
+                stroke-linecap="round"
+                stroke-width="2"
+              />
+            </svg>
+          </button>
+          <h3>
+            {{ project.title }}
+          </h3>
+          <button
+            class="next"
+            :disabled="project.index === filteredProjects.length - 1"
+            @click="showNext"
+          >
+            <svg
+              v-if="project.index !== filteredProjects.length - 1"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 35 21"
+            >
+              <path
+                d="M1.734 10.5H31.96m-7.455-8.957l8.957 8.957-8.957 8.957"
+                fill="none"
+                fill-rule="evenodd"
+                stroke-linecap="round"
+                stroke-width="2"
+              />
+            </svg>
+          </button>
+        </div>
+        <h4>{{ project.categories.join(' & ') }}</h4>
         <div v-html="project.content"></div>
       </div>
     </modal>
@@ -85,7 +126,18 @@ export default {
       current: 0,
       sections: _sections,
       project: '',
-      loaded: false
+      loaded: false,
+      currentCategory: 'tout'
+    }
+  },
+  computed: {
+    filteredProjects: function() {
+      if (this.currentCategory === 'tout') {
+        return this.projects.map((p, index) => ({ ...p, index }))
+      }
+      return this.projects
+        .filter(p => p.categories.includes(this.currentCategory))
+        .map((p, index) => ({ ...p, index }))
     }
   },
   async asyncData({ params, isDev }) {
@@ -125,6 +177,14 @@ export default {
     showProject: function(project) {
       this.project = project
       this.$modal.show('project')
+    },
+    showPrev() {
+      console.warn('prev', this.project.index - 1)
+      this.project = this.filteredProjects[this.project.index - 1]
+    },
+    showNext() {
+      console.warn('next', this.project.index + 1)
+      this.project = this.filteredProjects[this.project.index + 1]
     }
   }
 }
@@ -214,7 +274,8 @@ nav
   overflow-y: scroll !important
   -webkit-overflow-scrolling: touch
 .v--modal
-  background: rgba(255,255,255,0.92)
+  backdrop-filter: blur(4px)
+  background: rgba(34, 38, 74, 0.87)
 .fade-enter-active, .fade-leave-active
   transition: opacity .5s
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
