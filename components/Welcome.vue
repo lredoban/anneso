@@ -4,7 +4,12 @@
       <h1 class="hidden">
         Welcome
       </h1>
-      <img src="~assets/welcome.svg" alt="Welcome" />
+      <img
+        ref="img"
+        src="~assets/welcome.svg"
+        alt="Welcome"
+        :style="`transform: translate(${x}px , ${y}px)`"
+      />
     </div>
     <Infotip />
     <div class="copyright">
@@ -16,16 +21,35 @@
 
 <script>
 import Infotip from '~/components/Infotip.vue'
+import { throttle } from 'lodash'
 
 export default {
   components: {
     Infotip
+  },
+  data() {
+    return {
+      x: 0,
+      y: 0
+    }
+  },
+  mounted() {
+    document.onmousemove = throttle(this.mouseEvt, 100)
+  },
+  methods: {
+    mouseEvt(ev) {
+      this.x = (window.innerWidth / 2 - ev.x) / 4
+      this.y = (window.innerHeight / 2 - ev.y) / 4
+    }
   }
 }
 </script>
 
 <style lang="sass" scoped>
 @import "~assets/css/helpers"
+img
+  transition: transform 250ms ease-out
+  will-change: transform
 section
   background-color: $bg-purple
 .welcome
@@ -37,18 +61,16 @@ section
     padding-left: 2rem
     padding-bottom: 4rem
 .copyright
-  bottom: 0
-  left: 0
-  font-size: .8em
   position: absolute
-  width: 100vh
+  top: 0
+  bottom: 0
+  text-align: center
+  transform: rotate(180deg)
+  writing-mode: vertical-rl
+  font-size: .8em
   color: $secondary
-  transform-origin: left
-  transform: rotate(-90deg)
-  margin-left: 3em
-  text-align: left
   @media #{$small-up}
-    text-align: center
+    margin-left: 2rem
   span:last-child
     margin-left: 1em
     @media #{$small-up}

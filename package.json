@@ -1,7 +1,7 @@
 {
-  "name": "annefo",
+  "name": "sushiya",
   "version": "1.0.0",
-  "description": "Anne-So Portfolio",
+  "description": "",
   "author": "Lovasoa <maitrejedi@lovasoa.fr>",
   "private": true,
   "dependencies": {
@@ -39,5 +39,6 @@
     "node-sass": "^4.12.0",
     "prettier": "^1.18.2",
     "sass-loader": "^7.1.0"
-  }
+  },
+  "keywords": []
 }
