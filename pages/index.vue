@@ -52,52 +52,54 @@
           <span>❌</span>
         </button>
       </div>
-      <div v-if="project" class="project">
-        <div class="project-nav">
-          <button
-            class="prev"
-            :disabled="project.index === 0"
-            @click="showPrev"
-          >
-            <svg
-              v-if="project.index !== 0"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 35 21"
+      <div @click.self="$modal.hide('project')">
+        <div v-if="project" class="project">
+          <div class="project-nav">
+            <button
+              class="prev"
+              :disabled="project.index === 0"
+              @click="showPrev"
             >
-              <path
-                d="M1.734 10.5H31.96m-7.455-8.957l8.957 8.957-8.957 8.957"
-                fill="none"
-                fill-rule="evenodd"
-                stroke-linecap="round"
-                stroke-width="2"
-              />
-            </svg>
-          </button>
-          <h3>
-            {{ project.title }}
-          </h3>
-          <button
-            class="next"
-            :disabled="project.index === filteredProjects.length - 1"
-            @click="showNext"
-          >
-            <svg
-              v-if="project.index !== filteredProjects.length - 1"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 35 21"
+              <svg
+                v-if="project.index !== 0"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 35 21"
+              >
+                <path
+                  d="M1.734 10.5H31.96m-7.455-8.957l8.957 8.957-8.957 8.957"
+                  fill="none"
+                  fill-rule="evenodd"
+                  stroke-linecap="round"
+                  stroke-width="2"
+                />
+              </svg>
+            </button>
+            <h3>
+              {{ project.title }}
+            </h3>
+            <button
+              class="next"
+              :disabled="project.index === filteredProjects.length - 1"
+              @click="showNext"
             >
-              <path
-                d="M1.734 10.5H31.96m-7.455-8.957l8.957 8.957-8.957 8.957"
-                fill="none"
-                fill-rule="evenodd"
-                stroke-linecap="round"
-                stroke-width="2"
-              />
-            </svg>
-          </button>
+              <svg
+                v-if="project.index !== filteredProjects.length - 1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 35 21"
+              >
+                <path
+                  d="M1.734 10.5H31.96m-7.455-8.957l8.957 8.957-8.957 8.957"
+                  fill="none"
+                  fill-rule="evenodd"
+                  stroke-linecap="round"
+                  stroke-width="2"
+                />
+              </svg>
+            </button>
+          </div>
+          <h4>{{ project.categories.join(' & ') }}</h4>
+          <div v-html="project.content"></div>
         </div>
-        <h4>{{ project.categories.join(' & ') }}</h4>
-        <div v-html="project.content"></div>
       </div>
     </modal>
   </main>
