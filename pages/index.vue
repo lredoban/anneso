@@ -46,7 +46,14 @@
         </li>
       </ul>
     </nav>
-    <modal name="project" :adaptive="true" width="100%" height="100%">
+    <modal
+      name="project"
+      :adaptive="true"
+      width="100%"
+      height="100%"
+      @before-open="() => scrollFn(false)"
+      @before-close="() => scrollFn(true)"
+    >
       <div slot="top-right">
         <button class="close" @click="$modal.hide('project')">
           <span>❌</span>
@@ -129,7 +136,8 @@ export default {
       sections: _sections,
       project: '',
       loaded: false,
-      currentCategory: 'tout'
+      currentCategory: 'tout',
+      scrollFn: null
     }
   },
   computed: {
@@ -164,10 +172,10 @@ export default {
       $('#fullpage').fullpage({
         // eslint-disable-line no-undef
         anchors: ['welcome', 'about', 'portfolio', 'contact'],
-        normalScrollElements: '.project',
         menu: '.menu',
         afterRender: () => {
           _.loaded = true
+          _.scrollFn = $.fn.fullpage.setAllowScrolling
         }
       })
     })

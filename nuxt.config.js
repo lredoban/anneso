@@ -33,12 +33,12 @@ module.exports = {
     ],
     script: [
       {
-        src: 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js',
+        src: 'https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js',
         type: 'text/javascript'
       },
       {
         src:
-          'https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.min.js',
+          'https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.js',
         type: 'text/javascript'
       }
     ],
@@ -47,7 +47,7 @@ module.exports = {
       {
         rel: 'stylesheet',
         href:
-          'https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.min.css'
+          'https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.css'
       }
     ],
     htmlAttrs: {
