@@ -55,13 +55,13 @@
       @before-close="() => scrollFn(true)"
     >
       <div slot="top-right">
-        <button class="close" @click="$modal.hide('project')">
+        <button class="close mobile-hide" @click="$modal.hide('project')">
           <span>❌</span>
         </button>
       </div>
       <div @click.self="$modal.hide('project')">
         <div v-if="project" class="project">
-          <div class="project-nav">
+          <div class="project-nav mobile-hide">
             <button
               class="prev"
               :disabled="project.index === 0"
@@ -104,7 +104,55 @@
               </svg>
             </button>
           </div>
-          <h4>{{ project.categories.join(' & ') }}</h4>
+          <h4 class="mobile-hide">{{ project.categories.join(' & ') }}</h4>
+          <nav class="project-mobile-nav">
+            <div>
+              <button
+                class="prev"
+                :disabled="project.index === 0"
+                @click="showPrev"
+              >
+                <svg
+                  v-if="project.index !== 0"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 35 21"
+                >
+                  <path
+                    d="M1.734 10.5H31.96m-7.455-8.957l8.957 8.957-8.957 8.957"
+                    fill="none"
+                    fill-rule="evenodd"
+                    stroke-linecap="round"
+                    stroke-width="2"
+                  />
+                </svg>
+              </button>
+              <button
+                class="next"
+                :disabled="project.index === filteredProjects.length - 1"
+                @click="showNext"
+              >
+                <svg
+                  v-if="project.index !== filteredProjects.length - 1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 35 21"
+                >
+                  <path
+                    d="M1.734 10.5H31.96m-7.455-8.957l8.957 8.957-8.957 8.957"
+                    fill="none"
+                    fill-rule="evenodd"
+                    stroke-linecap="round"
+                    stroke-width="2"
+                  />
+                </svg>
+              </button>
+            </div>
+            <button class="close" @click="$modal.hide('project')">
+              <span>❌</span>
+            </button>
+          </nav>
+          <h3 class="project-mobile-title">
+            {{ project.title }}
+          </h3>
           <div v-html="project.content"></div>
         </div>
       </div>
@@ -189,11 +237,9 @@ export default {
       this.$modal.show('project')
     },
     showPrev() {
-      console.warn('prev', this.project.index - 1)
       this.project = this.filteredProjects[this.project.index - 1]
     },
     showNext() {
-      console.warn('next', this.project.index + 1)
       this.project = this.filteredProjects[this.project.index + 1]
     }
   }
