@@ -240,6 +240,7 @@ nav
   @media #{$small-up}
     transform: translateY(0)
   li
+    position: relative
     list-style-type: none
     text-align: right
     height: 0px
@@ -247,13 +248,19 @@ nav
     @media #{$small-up}
       width: 1.9em
     margin: .5em 0
-    border-top: 2px solid $secondary
-    border-radius: 0
     transition: width .4s ease-in-out .1s, height .4s ease-in-out, color .4s ease
     cursor: pointer
     background: none
     color: $secondary
     opacity: 1
+    &::before
+      content: ''
+      position: absolute
+      height: 2px
+      width: 100%
+      background-color: $secondary
+      top: -2px
+      left: 0
     span
       display: inline
       opacity: 0
@@ -270,12 +277,17 @@ nav
       width: 100%
       padding-right: 5px
       transition: width .4s ease-in-out, height .4s ease-in-out .2s
+      &::before
+        transform: translateX(2em)
       span
         opacity: 1
         transition: opacity .4s ease-in .4s
       &.active
         color: $secondary
         margin-left: 0
+        &::before
+          transform: translateX(0)
+          transition: transform .4s ease-in-out
       &:hover
         color: darken($secondary, 3%)
 .v--modal-top-right
