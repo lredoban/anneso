@@ -40,6 +40,10 @@ module.exports = {
         src:
           'https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.js',
         type: 'text/javascript'
+      },
+      {
+        src: 'https://dz11y8g2.twic.pics/?v1',
+        type: 'text/javascript'
       }
     ],
     link: [
