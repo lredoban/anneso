@@ -343,7 +343,7 @@ nav
   -webkit-overflow-scrolling: touch
 .v--modal
   backdrop-filter: blur(4px)
-  background: rgba(34, 38, 74, 0.87)
+  background: rgba(34, 38, 74, 0.87) !important
 .fade-enter-active, .fade-leave-active
   transition: opacity .5s
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
