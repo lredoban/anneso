@@ -48,7 +48,7 @@ export default {
 <style lang="sass" scoped>
 @import "~assets/css/helpers"
 img
-  transition: transform 250ms ease-out
+  transition: transform 350ms cubic-bezier(.45,.41,.28,1.05)
   will-change: transform
 section
   background-color: $bg-purple
