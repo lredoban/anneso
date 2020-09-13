@@ -54,7 +54,6 @@ export async function getProjects() {
       .replace(/\/\/images.ctfassets.net\/wz0vjkm4y9pe\//g, 'image:heyoo/')
       .replace(/\/\/images.contentful.com\/wz0vjkm4y9pe\//g, 'image:heyoo2/')
       .replace(/<img src/g, '<img class="twic" data-src')
-    console.warn('content', content)
     return {
       content,
       title: i.fields.title,
